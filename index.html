@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MiniMag — Magazine en ligne mignon</title>
+  <meta name="description" content="MiniMag - un mini magazine coloré, interactif et responsive avec navigation type magazine (slide) et page-article en spread." />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="loader" id="loader">
+    <div class="loader-content">
+      <div class="loader-title">MiniMag</div>
+      <div class="loader-dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="logo">
+      <div class="mark">MM</div>
+      <div>
+        <h1>MiniMag</h1>
+        <div class="logo-subtitle">Magazine créatif & inspirant ✨</div>
+      </div>
+    </div>
+    <nav>
+      <button id="homeBtn">🏠 Accueil</button>
+      <button id="openArticleBtn">📖 Lire un article</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="page-container">
+      <div class="pages slide-left" id="pages">
+
+        <section class="page home-page">
+          <div class="home-wrap">
+            <h2 class="home-title">✨ Édition Printemps</h2>
+            <p class="home-subtitle">Découvrez nos articles créatifs, inspirants et colorés</p>
+            <div class="mag-grid" id="home"></div>
+          </div>
+          <div class="arrow arrow1">↗</div>
+          <div class="arrow arrow2">↖</div>
+          <div class="arrow arrow3">↘</div>
+          <div class="sticker sticker1">★ New!</div>
+          <div class="sticker sticker2">♡ Love it</div>
+          <div class="sticker sticker3">✨ Fresh</div>
+        </section>
+
+        <section class="page spread-page">
+          <div class="spread-wrap">
+            <div class="spread-back">
+              <button id="backHome">← Retour au magazine</button>
+            </div>
+            <div class="spread-badge" id="spreadCategory">Design</div>
+            <div class="spread">
+              <div class="left">
+                <h2 id="spreadTitle">Créez votre coin créatif</h2>
+                <div class="lead" id="spreadExcerpt">Un guide complet pour aménager un espace inspirant qui vous ressemble.</div>
+                <p class="body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet, magna a hendrerit fermentum, arcu risus tincidunt mauris, a efficitur nisl quam a augue. Praesent at nibh a est tempor cursus.</p>
+                <p class="body-text">Integer vel massa at arcu pulvinar feugiat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed euismod, nisl nec ultricies lacinia, nisl nisl aliquam nisl.</p>
+                <h4>Étapes clés</h4>
+                <ol>
+                  <li>Choisissez vos couleurs dominantes pour créer une ambiance cohérente</li>
+                  <li>Ajoutez des textures avec des tapis, coussins et papier peint</li>
+                  <li>Personnalisez avec des stickers et cartes qui vous inspirent</li>
+                  <li>Organisez votre espace pour favoriser la créativité et le bien-être</li>
+                </ol>
+                <p class="body-text">N'oubliez pas que l'essentiel est de créer un espace qui vous ressemble et dans lequel vous vous sentez bien. Laissez libre cours à votre imagination!</p>
+              </div>
+
+              <div class="right">
+                <div class="article-img">
+                  <img id="spreadImg" src="images/desk-creative.jpg" alt="Article">
+                </div>
+                <div class="spread-meta">
+                  <div class="spread-meta-item">
+                    <div class="spread-meta-value" id="spreadTime">5 min</div>
+                    <div class="spread-meta-label">Lecture</div>
+                  </div>
+                  <div class="spread-meta-item">
+                    <div class="spread-meta-value" id="spreadDate">12 Oct</div>
+                    <div class="spread-meta-label">Publié</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
