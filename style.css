@@ -1,3 +1,4 @@
+
     :root{
       --bg1:#fff7fb; --bg2:#fffef6; --muted:#6b6b6b;
       --p1:#ff6b6b; --p2:#4ecdc4; --p3:#ffd93d; --p4:#95e1d3;
@@ -8,8 +9,19 @@
 
     body{cursor:url("data:image/svg+xml,%3Csvg width='24' height='24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='12' cy='12' r='10' fill='%23ff6b6b' opacity='0.6'/%3E%3Ctext x='12' y='16' text-anchor='middle' font-size='12' fill='white'%3E✨%3C/text%3E%3C/svg%3E") 12 12, auto}
 
-    /* Hide checkboxes used for navigation */
-    #nav-toggle{display:none}
+    #nav-toggle, input[name="article"]{display:none}
+    
+    .article-spread{display:none}
+    
+    #article-1:checked ~ main #spread-1,
+    #article-2:checked ~ main #spread-2,
+    #article-3:checked ~ main #spread-3,
+    #article-4:checked ~ main #spread-4,
+    #article-5:checked ~ main #spread-5,
+    #article-6:checked ~ main #spread-6,
+    #article-7:checked ~ main #spread-7,
+    #article-8:checked ~ main #spread-8,
+    #article-9:checked ~ main #spread-9{display:block}
 
     header{display:flex;align-items:center;justify-content:space-between;padding:20px 30px;background:rgba(255,255,255,0.8);backdrop-filter:blur(10px);box-shadow:0 4px 20px rgba(0,0,0,0.05);position:sticky;top:0;z-index:100}
     .logo{display:flex;align-items:center;gap:14px}

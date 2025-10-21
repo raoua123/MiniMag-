@@ -1,18 +1,25 @@
 <!doctype html>
-<html >
+<html lang="fr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MiniMag — Magazine en ligne mignon</title>
   <meta name="description" content="MiniMag - un mini magazine coloré, interactif et responsive avec navigation type magazine (slide) et page-article en spread." />
   <link rel="stylesheet" href="style.css">
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-
 
 </head>
 <body>
   <input type="checkbox" id="nav-toggle">
+  <input type="radio" name="article" id="article-1">
+  <input type="radio" name="article" id="article-2">
+  <input type="radio" name="article" id="article-3">
+  <input type="radio" name="article" id="article-4">
+  <input type="radio" name="article" id="article-5">
+  <input type="radio" name="article" id="article-6">
+  <input type="radio" name="article" id="article-7">
+  <input type="radio" name="article" id="article-8">
+  <input type="radio" name="article" id="article-9">
   
   <div class="loader">
     <div class="loader-content">
@@ -46,7 +53,7 @@
             
             <div class="mag-grid">
               <article class="article a1">
-                <label for="nav-toggle" style="cursor:pointer;display:block">
+                <label for="article-1" onclick="document.getElementById('nav-toggle').checked=true" style="cursor:pointer;display:block">
                   <div class="media">
                     <img src="images/desk-creative.jpg" alt="Créez votre coin créatif" loading="lazy">
                     <div class="badge">Design</div>
@@ -64,7 +71,7 @@
               </article>
 
               <article class="article a2">
-                <label for="nav-toggle" style="cursor:pointer;display:block">
+                <label for="article-2" onclick="document.getElementById('nav-toggle').checked=true" style="cursor:pointer;display:block">
                   <div class="media">
                     <img src="images/cute-pets.jpg" alt="Les animaux qui volent votre cœur" loading="lazy">
                     <div class="badge">Lifestyle</div>
@@ -82,7 +89,7 @@
               </article>
 
               <article class="article a3">
-                <label for="nav-toggle" style="cursor:pointer;display:block">
+                <label for="article-3" onclick="document.getElementById('nav-toggle').checked=true" style="cursor:pointer;display:block">
                   <div class="media">
                     <img src="images/healthy-snack.jpg" alt="Snacks rapides & jolis" loading="lazy">
                     <div class="badge">Food</div>
@@ -100,7 +107,7 @@
               </article>
 
               <article class="article a4">
-                <label for="nav-toggle" style="cursor:pointer;display:block">
+                <label for="article-4" onclick="document.getElementById('nav-toggle').checked=true" style="cursor:pointer;display:block">
                   <div class="media">
                     <img src="images/city-travel.jpg" alt="Mini guide: une journée en ville" loading="lazy">
                     <div class="badge">Travel</div>
@@ -118,7 +125,7 @@
               </article>
 
               <article class="article a5">
-                <label for="nav-toggle" style="cursor:pointer;display:block">
+                <label for="article-5" onclick="document.getElementById('nav-toggle').checked=true" style="cursor:pointer;display:block">
                   <div class="media">
                     <img src="images/stationery-diy.jpg" alt="Papeterie mignonne DIY" loading="lazy">
                     <div class="badge">DIY</div>
@@ -136,7 +143,7 @@
               </article>
 
               <article class="article a6">
-                <label for="nav-toggle" style="cursor:pointer;display:block">
+                <label for="article-6" onclick="document.getElementById('nav-toggle').checked=true" style="cursor:pointer;display:block">
                   <div class="media">
                     <img src="images/study-notes.jpg" alt="Hackez vos révisions" loading="lazy">
                     <div class="badge">Study</div>
@@ -154,7 +161,7 @@
               </article>
 
               <article class="article a7">
-                <label for="nav-toggle" style="cursor:pointer;display:block">
+                <label for="article-7" onclick="document.getElementById('nav-toggle').checked=true" style="cursor:pointer;display:block">
                   <div class="media">
                     <img src="images/plants-sunlight.jpg" alt="Plantes faciles pour débutants" loading="lazy">
                     <div class="badge">Green</div>
@@ -172,7 +179,7 @@
               </article>
 
               <article class="article a8">
-                <label for="nav-toggle" style="cursor:pointer;display:block">
+                <label for="article-8" onclick="document.getElementById('nav-toggle').checked=true" style="cursor:pointer;display:block">
                   <div class="media">
                     <img src="images/morning-coffee.jpg" alt="Routines du matin pour rester zen" loading="lazy">
                     <div class="badge">Culture</div>
@@ -190,7 +197,7 @@
               </article>
 
               <article class="article a9">
-                <label for="nav-toggle" style="cursor:pointer;display:block">
+                <label for="article-9" onclick="document.getElementById('nav-toggle').checked=true" style="cursor:pointer;display:block">
                   <div class="media">
                     <img src="images/colorful-collage.jpg" alt="Édition spéciale: couleurs & motifs" loading="lazy">
                     <div class="badge">Special</div>
@@ -218,22 +225,18 @@
         </section>
 
         <section class="page spread-page">
-          <div class="spread-wrap">
+          
+          <div class="spread-wrap article-spread" id="spread-1">
             <div class="spread-back">
               <label for="nav-toggle">← Retour au magazine</label>
             </div>
-
             <div class="spread-badge">Design</div>
-
             <div class="spread">
               <div class="left">
                 <h2>Créez votre coin créatif</h2>
                 <div class="lead">Un guide complet pour aménager un espace inspirant qui vous ressemble.</div>
-
                 <p class="body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet, magna a hendrerit fermentum, arcu risus tincidunt mauris, a efficitur nisl quam a augue. Praesent at nibh a est tempor cursus.</p>
-
                 <p class="body-text">Integer vel massa at arcu pulvinar feugiat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed euismod, nisl nec ultricies lacinia, nisl nisl aliquam nisl.</p>
-
                 <h4>Étapes clés</h4>
                 <ol>
                   <li>Choisissez vos couleurs dominantes pour créer une ambiance cohérente</li>
@@ -241,15 +244,12 @@
                   <li>Personnalisez avec des stickers et cartes qui vous inspirent</li>
                   <li>Organisez votre espace pour favoriser la créativité et le bien-être</li>
                 </ol>
-
                 <p class="body-text">N'oubliez pas que l'essentiel est de créer un espace qui vous ressemble et dans lequel vous vous sentez bien. Laissez libre cours à votre imagination!</p>
               </div>
-
               <div class="right">
                 <div class="article-img">
                   <img src="images/desk-creative.jpg" alt="Article">
                 </div>
-
                 <div class="spread-meta">
                   <div class="spread-meta-item">
                     <div class="spread-meta-value">5 min</div>
@@ -263,6 +263,297 @@
               </div>
             </div>
           </div>
+
+          <div class="spread-wrap article-spread" id="spread-2">
+            <div class="spread-back">
+              <label for="nav-toggle">← Retour au magazine</label>
+            </div>
+            <div class="spread-badge">Lifestyle</div>
+            <div class="spread">
+              <div class="left">
+                <h2>Les animaux qui volent votre cœur</h2>
+                <div class="lead">Une collection d'instantanés trop mignons pour adoucir la journée.</div>
+                <p class="body-text">Les animaux de compagnie apportent tellement de joie dans nos vies. Leur innocence et leur amour inconditionnel sont des cadeaux précieux.</p>
+                <p class="body-text">Découvrez notre sélection de photos adorables qui vont illuminer votre journée et vous rappeler pourquoi nous aimons tant nos compagnons à quatre pattes.</p>
+                <h4>Moments favoris</h4>
+                <ol>
+                  <li>Les siestes au soleil</li>
+                  <li>Les câlins spontanés</li>
+                  <li>Les jeux interminables</li>
+                  <li>Les regards complices</li>
+                </ol>
+              </div>
+              <div class="right">
+                <div class="article-img">
+                  <img src="images/cute-pets.jpg" alt="Article">
+                </div>
+                <div class="spread-meta">
+                  <div class="spread-meta-item">
+                    <div class="spread-meta-value">3 min</div>
+                    <div class="spread-meta-label">Lecture</div>
+                  </div>
+                  <div class="spread-meta-item">
+                    <div class="spread-meta-value">01 Sep</div>
+                    <div class="spread-meta-label">Publié</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spread-wrap article-spread" id="spread-3">
+            <div class="spread-back">
+              <label for="nav-toggle">← Retour au magazine</label>
+            </div>
+            <div class="spread-badge">Food</div>
+            <div class="spread">
+              <div class="left">
+                <h2>Snacks rapides & jolis</h2>
+                <div class="lead">3 recettes à faire en 10 minutes, parfaites pour les pauses.</div>
+                <p class="body-text">Manger sainement ne doit pas être compliqué. Ces recettes simples sont non seulement délicieuses mais aussi visuellement magnifiques.</p>
+                <h4>Nos recettes favorites</h4>
+                <ol>
+                  <li>Bowl de fruits frais avec yaourt et granola</li>
+                  <li>Toast avocat avec graines et citron</li>
+                  <li>Smoothie bowl coloré aux fruits rouges</li>
+                </ol>
+                <p class="body-text">Prenez le temps de savourer ces moments de pause gourmande!</p>
+              </div>
+              <div class="right">
+                <div class="article-img">
+                  <img src="images/healthy-snack.jpg" alt="Article">
+                </div>
+                <div class="spread-meta">
+                  <div class="spread-meta-item">
+                    <div class="spread-meta-value">4 min</div>
+                    <div class="spread-meta-label">Lecture</div>
+                  </div>
+                  <div class="spread-meta-item">
+                    <div class="spread-meta-value">20 Août</div>
+                    <div class="spread-meta-label">Publié</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spread-wrap article-spread" id="spread-4">
+            <div class="spread-back">
+              <label for="nav-toggle">← Retour au magazine</label>
+            </div>
+            <div class="spread-badge">Travel</div>
+            <div class="spread">
+              <div class="left">
+                <h2>Mini guide: une journée en ville</h2>
+                <div class="lead">Itinéraire cosy pour découvrir une ville en une journée.</div>
+                <p class="body-text">Explorez les rues cachées, les cafés mignons et les boutiques locales pour une expérience authentique.</p>
+                <h4>Programme de la journée</h4>
+                <ol>
+                  <li>Matin: café dans un endroit local</li>
+                  <li>Midi: marché et déjeuner street food</li>
+                  <li>Après-midi: musées et galeries</li>
+                  <li>Soir: dîner et vue panoramique</li>
+                </ol>
+              </div>
+              <div class="right">
+                <div class="article-img">
+                  <img src="images/city-travel.jpg" alt="Article">
+                </div>
+                <div class="spread-meta">
+                  <div class="spread-meta-item">
+                    <div class="spread-meta-value">7 min</div>
+                    <div class="spread-meta-label">Lecture</div>
+                  </div>
+                  <div class="spread-meta-item">
+                    <div class="spread-meta-value">02 Juil</div>
+                    <div class="spread-meta-label">Publié</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spread-wrap article-spread" id="spread-5">
+            <div class="spread-back">
+              <label for="nav-toggle">← Retour au magazine</label>
+            </div>
+            <div class="spread-badge">DIY</div>
+            <div class="spread">
+              <div class="left">
+                <h2>Papeterie mignonne DIY</h2>
+                <div class="lead">Personnalisez vos cahiers et cartes en quelques étapes.</div>
+                <p class="body-text">Créez votre propre papeterie unique avec des matériaux simples et beaucoup de créativité.</p>
+                <h4>Matériel nécessaire</h4>
+                <ol>
+                  <li>Cahiers vierges et carnets</li>
+                  <li>Washi tape coloré</li>
+                  <li>Stickers et autocollants</li>
+                  <li>Feutres et crayons de couleur</li>
+                </ol>
+              </div>
+              <div class="right">
+                <div class="article-img">
+                  <img src="images/stationery-diy.jpg" alt="Article">
+                </div>
+                <div class="spread-meta">
+                  <div class="spread-meta-item">
+                    <div class="spread-meta-value">6 min</div>
+                    <div class="spread-meta-label">Lecture</div>
+                  </div>
+                  <div class="spread-meta-item">
+                    <div class="spread-meta-value">14 Juin</div>
+                    <div class="spread-meta-label">Publié</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spread-wrap article-spread" id="spread-6">
+            <div class="spread-back">
+              <label for="nav-toggle">← Retour au magazine</label>
+            </div>
+            <div class="spread-badge">Study</div>
+            <div class="spread">
+              <div class="left">
+                <h2>Hackez vos révisions</h2>
+                <div class="lead">Techniques de mémorisation et organisation pour étudiants.</div>
+                <p class="body-text">Améliorez votre efficacité d'apprentissage avec ces méthodes éprouvées.</p>
+                <h4>Techniques à essayer</h4>
+                <ol>
+                  <li>Méthode Pomodoro (25 min focus)</li>
+                  <li>Mind mapping pour visualiser</li>
+                  <li>Répétition espacée</li>
+                  <li>Enseignez ce que vous apprenez</li>
+                </ol>
+              </div>
+              <div class="right">
+                <div class="article-img">
+                  <img src="images/study-notes.jpg" alt="Article">
+                </div>
+                <div class="spread-meta">
+                  <div class="spread-meta-item">
+                    <div class="spread-meta-value">8 min</div>
+                    <div class="spread-meta-label">Lecture</div>
+                  </div>
+                  <div class="spread-meta-item">
+                    <div class="spread-meta-value">30 Mai</div>
+                    <div class="spread-meta-label">Publié</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spread-wrap article-spread" id="spread-7">
+            <div class="spread-back">
+              <label for="nav-toggle">← Retour au magazine</label>
+            </div>
+            <div class="spread-badge">Green</div>
+            <div class="spread">
+              <div class="left">
+                <h2>Plantes faciles pour débutants</h2>
+                <div class="lead">Choisissez des plantes résistantes et adorables pour débuter.</div>
+                <p class="body-text">Transformez votre intérieur avec ces plantes qui demandent peu d'entretien.</p>
+                <h4>Nos recommandations</h4>
+                <ol>
+                  <li>Pothos: increvable et purificateur</li>
+                  <li>Succulentes: arrosage minimal</li>
+                  <li>Snake plant: tolère l'ombre</li>
+                  <li>Monstera: tendance et facile</li>
+                </ol>
+              </div>
+              <div class="right">
+                <div class="article-img">
+                  <img src="images/plants-sunlight.jpg" alt="Article">
+                </div>
+                <div class="spread-meta">
+                  <div class="spread-meta-item">
+                    <div class="spread-meta-value">2 min</div>
+                    <div class="spread-meta-label">Lecture</div>
+                  </div>
+                  <div class="spread-meta-item">
+                    <div class="spread-meta-value">12 Avr</div>
+                    <div class="spread-meta-label">Publié</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spread-wrap article-spread" id="spread-8">
+            <div class="spread-back">
+              <label for="nav-toggle">← Retour au magazine</label>
+            </div>
+            <div class="spread-badge">Culture</div>
+            <div class="spread">
+              <div class="left">
+                <h2>Routines du matin pour rester zen</h2>
+                <div class="lead">Rituels simples pour un réveil doux et efficace.</div>
+                <p class="body-text">Commencez la journée du bon pied avec ces habitudes apaisantes et énergisantes.</p>
+                <h4>Rituel matinal idéal</h4>
+                <ol>
+                  <li>Méditation de 5 minutes</li>
+                  <li>Étirements doux</li>
+                  <li>Café ou thé en pleine conscience</li>
+                  <li>Journaling ou lecture</li>
+                </ol>
+              </div>
+              <div class="right">
+                <div class="article-img">
+                  <img src="images/morning-coffee.jpg" alt="Article">
+                </div>
+                <div class="spread-meta">
+                  <div class="spread-meta-item">
+                    <div class="spread-meta-value">10 min</div>
+                    <div class="spread-meta-label">Lecture</div>
+                  </div>
+                  <div class="spread-meta-item">
+                    <div class="spread-meta-value">01 Mar</div>
+                    <div class="spread-meta-label">Publié</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spread-wrap article-spread" id="spread-9">
+            <div class="spread-back">
+              <label for="nav-toggle">← Retour au magazine</label>
+            </div>
+            <div class="spread-badge">Special</div>
+            <div class="spread">
+              <div class="left">
+                <h2>Édition spéciale: couleurs & motifs</h2>
+                <div class="lead">Un grand dossier illustré sur les tendances joyeuses du moment.</div>
+                <p class="body-text">Explorez l'univers coloré des tendances actuelles en décoration, mode et design.</p>
+                <h4>Tendances du moment</h4>
+                <ol>
+                  <li>Pastels audacieux</li>
+                  <li>Motifs géométriques</li>
+                  <li>Mix & match de textures</li>
+                  <li>Couleurs vives et joyeuses</li>
+                </ol>
+                <p class="body-text">Laissez-vous inspirer par ces combinaisons vibrantes!</p>
+              </div>
+              <div class="right">
+                <div class="article-img">
+                  <img src="images/colorful-collage.jpg" alt="Article">
+                </div>
+                <div class="spread-meta">
+                  <div class="spread-meta-item">
+                    <div class="spread-meta-value">15 min</div>
+                    <div class="spread-meta-label">Lecture</div>
+                  </div>
+                  <div class="spread-meta-item">
+                    <div class="spread-meta-value">20 Fév</div>
+                    <div class="spread-meta-label">Publié</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </section>
 
       </div>
