@@ -1,21 +1,23 @@
 <!doctype html>
-<html lang="fr">
+<html >
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MiniMag — Magazine en ligne mignon</title>
   <meta name="description" content="MiniMag - un mini magazine coloré, interactif et responsive avec navigation type magazine (slide) et page-article en spread." />
   <link rel="stylesheet" href="style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+
 </head>
 <body>
-  <div class="loader" id="loader">
+  <input type="checkbox" id="nav-toggle">
+  
+  <div class="loader">
     <div class="loader-content">
       <div class="loader-title">MiniMag</div>
-      <div class="loader-dots">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
+      <div class="loader-dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
     </div>
   </div>
 
@@ -24,25 +26,189 @@
       <div class="mark">MM</div>
       <div>
         <h1>MiniMag</h1>
-        <div class="logo-subtitle">Magazine créatif & inspirant ✨</div>
+        <div style="font-size:13px;color:var(--muted)">Magazine créatif & inspirant ✨</div>
       </div>
     </div>
     <nav>
-      <button id="homeBtn">🏠 Accueil</button>
-      <button id="openArticleBtn">📖 Lire un article</button>
+      <label for="nav-toggle">🏠 Accueil</label>
+      <label for="nav-toggle">📖 Lire un article</label>
     </nav>
   </header>
 
   <main>
     <div class="page-container">
-      <div class="pages slide-left" id="pages">
-
+      <div class="pages">
+        
         <section class="page home-page">
           <div class="home-wrap">
             <h2 class="home-title">✨ Édition Printemps</h2>
             <p class="home-subtitle">Découvrez nos articles créatifs, inspirants et colorés</p>
-            <div class="mag-grid" id="home"></div>
+            
+            <div class="mag-grid">
+              <article class="article a1">
+                <label for="nav-toggle" style="cursor:pointer;display:block">
+                  <div class="media">
+                    <img src="images/desk-creative.jpg" alt="Créez votre coin créatif" loading="lazy">
+                    <div class="badge">Design</div>
+                  </div>
+                  <div class="content">
+                    <div class="kicker">Design</div>
+                    <div class="title">Créez votre coin créatif</div>
+                    <div class="excerpt">Des astuces simples pour rendre votre bureau plus joyeux et productif.</div>
+                    <div class="meta">
+                      <div class="icon">💡</div>
+                      <div class="meta-text">5 min • 12 Oct</div>
+                    </div>
+                  </div>
+                </label>
+              </article>
+
+              <article class="article a2">
+                <label for="nav-toggle" style="cursor:pointer;display:block">
+                  <div class="media">
+                    <img src="images/cute-pets.jpg" alt="Les animaux qui volent votre cœur" loading="lazy">
+                    <div class="badge">Lifestyle</div>
+                  </div>
+                  <div class="content">
+                    <div class="kicker">Lifestyle</div>
+                    <div class="title">Les animaux qui volent votre cœur</div>
+                    <div class="excerpt">Une collection d'instantanés trop mignons pour adoucir la journée.</div>
+                    <div class="meta">
+                      <div class="icon">🐶</div>
+                      <div class="meta-text">3 min • 01 Sep</div>
+                    </div>
+                  </div>
+                </label>
+              </article>
+
+              <article class="article a3">
+                <label for="nav-toggle" style="cursor:pointer;display:block">
+                  <div class="media">
+                    <img src="images/healthy-snack.jpg" alt="Snacks rapides & jolis" loading="lazy">
+                    <div class="badge">Food</div>
+                  </div>
+                  <div class="content">
+                    <div class="kicker">Food</div>
+                    <div class="title">Snacks rapides & jolis</div>
+                    <div class="excerpt">3 recettes à faire en 10 minutes, parfaites pour les pauses créatives.</div>
+                    <div class="meta">
+                      <div class="icon">🍓</div>
+                      <div class="meta-text">4 min • 20 Août</div>
+                    </div>
+                  </div>
+                </label>
+              </article>
+
+              <article class="article a4">
+                <label for="nav-toggle" style="cursor:pointer;display:block">
+                  <div class="media">
+                    <img src="images/city-travel.jpg" alt="Mini guide: une journée en ville" loading="lazy">
+                    <div class="badge">Travel</div>
+                  </div>
+                  <div class="content">
+                    <div class="kicker">Travel</div>
+                    <div class="title">Mini guide: une journée en ville</div>
+                    <div class="excerpt">Itinéraire cosy pour découvrir une ville en une journée.</div>
+                    <div class="meta">
+                      <div class="icon">✈️</div>
+                      <div class="meta-text">7 min • 02 Juil</div>
+                    </div>
+                  </div>
+                </label>
+              </article>
+
+              <article class="article a5">
+                <label for="nav-toggle" style="cursor:pointer;display:block">
+                  <div class="media">
+                    <img src="images/stationery-diy.jpg" alt="Papeterie mignonne DIY" loading="lazy">
+                    <div class="badge">DIY</div>
+                  </div>
+                  <div class="content">
+                    <div class="kicker">DIY</div>
+                    <div class="title">Papeterie mignonne DIY</div>
+                    <div class="excerpt">Personnalisez vos cahiers et cartes en quelques étapes simples.</div>
+                    <div class="meta">
+                      <div class="icon">✂️</div>
+                      <div class="meta-text">6 min • 14 Juin</div>
+                    </div>
+                  </div>
+                </label>
+              </article>
+
+              <article class="article a6">
+                <label for="nav-toggle" style="cursor:pointer;display:block">
+                  <div class="media">
+                    <img src="images/study-notes.jpg" alt="Hackez vos révisions" loading="lazy">
+                    <div class="badge">Study</div>
+                  </div>
+                  <div class="content">
+                    <div class="kicker">Study</div>
+                    <div class="title">Hackez vos révisions</div>
+                    <div class="excerpt">Techniques de mémorisation et organisation pour étudiants efficaces.</div>
+                    <div class="meta">
+                      <div class="icon">📚</div>
+                      <div class="meta-text">8 min • 30 Mai</div>
+                    </div>
+                  </div>
+                </label>
+              </article>
+
+              <article class="article a7">
+                <label for="nav-toggle" style="cursor:pointer;display:block">
+                  <div class="media">
+                    <img src="images/plants-sunlight.jpg" alt="Plantes faciles pour débutants" loading="lazy">
+                    <div class="badge">Green</div>
+                  </div>
+                  <div class="content">
+                    <div class="kicker">Green</div>
+                    <div class="title">Plantes faciles pour débutants</div>
+                    <div class="excerpt">Choisissez des plantes résistantes et adorables pour débuter.</div>
+                    <div class="meta">
+                      <div class="icon">🌿</div>
+                      <div class="meta-text">2 min • 12 Avr</div>
+                    </div>
+                  </div>
+                </label>
+              </article>
+
+              <article class="article a8">
+                <label for="nav-toggle" style="cursor:pointer;display:block">
+                  <div class="media">
+                    <img src="images/morning-coffee.jpg" alt="Routines du matin pour rester zen" loading="lazy">
+                    <div class="badge">Culture</div>
+                  </div>
+                  <div class="content">
+                    <div class="kicker">Culture</div>
+                    <div class="title">Routines du matin pour rester zen</div>
+                    <div class="excerpt">Rituels simples pour un réveil doux et une journée productive.</div>
+                    <div class="meta">
+                      <div class="icon">☕</div>
+                      <div class="meta-text">10 min • 01 Mar</div>
+                    </div>
+                  </div>
+                </label>
+              </article>
+
+              <article class="article a9">
+                <label for="nav-toggle" style="cursor:pointer;display:block">
+                  <div class="media">
+                    <img src="images/colorful-collage.jpg" alt="Édition spéciale: couleurs & motifs" loading="lazy">
+                    <div class="badge">Special</div>
+                  </div>
+                  <div class="content">
+                    <div class="kicker">Special</div>
+                    <div class="title">Édition spéciale: couleurs & motifs</div>
+                    <div class="excerpt">Un grand dossier illustré sur les tendances joyeuses du moment.</div>
+                    <div class="meta">
+                      <div class="icon">✨</div>
+                      <div class="meta-text">15 min • 20 Fév</div>
+                    </div>
+                  </div>
+                </label>
+              </article>
+            </div>
           </div>
+
           <div class="arrow arrow1">↗</div>
           <div class="arrow arrow2">↖</div>
           <div class="arrow arrow3">↘</div>
@@ -54,15 +220,20 @@
         <section class="page spread-page">
           <div class="spread-wrap">
             <div class="spread-back">
-              <button id="backHome">← Retour au magazine</button>
+              <label for="nav-toggle">← Retour au magazine</label>
             </div>
-            <div class="spread-badge" id="spreadCategory">Design</div>
+
+            <div class="spread-badge">Design</div>
+
             <div class="spread">
               <div class="left">
-                <h2 id="spreadTitle">Créez votre coin créatif</h2>
-                <div class="lead" id="spreadExcerpt">Un guide complet pour aménager un espace inspirant qui vous ressemble.</div>
+                <h2>Créez votre coin créatif</h2>
+                <div class="lead">Un guide complet pour aménager un espace inspirant qui vous ressemble.</div>
+
                 <p class="body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet, magna a hendrerit fermentum, arcu risus tincidunt mauris, a efficitur nisl quam a augue. Praesent at nibh a est tempor cursus.</p>
+
                 <p class="body-text">Integer vel massa at arcu pulvinar feugiat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed euismod, nisl nec ultricies lacinia, nisl nisl aliquam nisl.</p>
+
                 <h4>Étapes clés</h4>
                 <ol>
                   <li>Choisissez vos couleurs dominantes pour créer une ambiance cohérente</li>
@@ -70,20 +241,22 @@
                   <li>Personnalisez avec des stickers et cartes qui vous inspirent</li>
                   <li>Organisez votre espace pour favoriser la créativité et le bien-être</li>
                 </ol>
+
                 <p class="body-text">N'oubliez pas que l'essentiel est de créer un espace qui vous ressemble et dans lequel vous vous sentez bien. Laissez libre cours à votre imagination!</p>
               </div>
 
               <div class="right">
                 <div class="article-img">
-                  <img id="spreadImg" src="images/desk-creative.jpg" alt="Article">
+                  <img src="images/desk-creative.jpg" alt="Article">
                 </div>
+
                 <div class="spread-meta">
                   <div class="spread-meta-item">
-                    <div class="spread-meta-value" id="spreadTime">5 min</div>
+                    <div class="spread-meta-value">5 min</div>
                     <div class="spread-meta-label">Lecture</div>
                   </div>
                   <div class="spread-meta-item">
-                    <div class="spread-meta-value" id="spreadDate">12 Oct</div>
+                    <div class="spread-meta-value">12 Oct</div>
                     <div class="spread-meta-label">Publié</div>
                   </div>
                 </div>
@@ -95,7 +268,5 @@
       </div>
     </div>
   </main>
-
-  <script src="script.js"></script>
 </body>
 </html>
