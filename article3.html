@@ -3,10 +3,338 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Les animaux qui volent votre cœur - MiniMag</title>
-  <meta name="description" content="Une collection d'instantanés trop mignons pour adoucir la journée." />
-  <link rel="stylesheet" href="style.css">
+  <title>Snacks rapides & jolis — MiniMag</title>
+  <meta name="description" content="3 recettes à faire en 10 minutes, parfaites pour les pauses créatives." />
+  <meta name="author" content="MiniMag" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root{
+      --bg1:#fff7fb; --bg2:#fffef6; --muted:#6b6b6b;
+      --p1:#ff6b6b; --p2:#4ecdc4; --p3:#ffd93d; --p4:#95e1d3;
+      --card:#ffffff; --shadow:0 16px 40px rgba(16,24,40,0.12); --radius:16px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    html,body{
+      height:100%;
+      background:linear-gradient(180deg,var(--bg1),var(--bg2));
+      font-family:'Inter',system-ui,sans-serif;
+      color:#232323;
+      overflow-x:hidden;
+    }
+
+    .mag-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:20px 30px;
+      background:rgba(255,255,255,0.8);
+      backdrop-filter:blur(10px);
+      box-shadow:0 4px 20px rgba(0,0,0,0.05);
+      position:sticky;
+      top:0;
+      z-index:100;
+      animation: slideDown 0.5s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .mag-logo{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .mag-logo .mark{
+      width:60px;
+      height:60px;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--p1),var(--p2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:white;
+      font-weight:900;
+      font-family:'Playfair Display',serif;
+      font-size:22px;
+      box-shadow:var(--shadow);
+      transform:rotate(-3deg);
+      transition: all 0.3s;
+    }
+
+    .mag-logo .mark:hover {
+      transform: rotate(3deg) scale(1.1);
+    }
+
+    .mag-logo h1{
+      margin:0;
+      font-size:22px;
+      font-family:'Playfair Display',serif;
+    }
+
+    .back-btn{
+      background:linear-gradient(135deg,var(--p1),var(--p2));
+      color:white;
+      border:0;
+      padding:12px 24px;
+      border-radius:12px;
+      font-weight:700;
+      cursor:pointer;
+      transition:all 0.3s;
+      box-shadow:0 4px 12px rgba(255,107,107,0.3);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      text-decoration:none;
+    }
+
+    .back-btn:hover{
+      transform:translateX(-4px) scale(1.05);
+      box-shadow:0 6px 20px rgba(255,107,107,0.4);
+    }
+
+    /* Article Content */
+    .article-main{
+      max-width:1000px;
+      margin:40px auto;
+      padding:0 30px 100px;
+    }
+
+    .article-container{
+      background:white;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 20px 60px rgba(0,0,0,0.15);
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .article-hero{
+      position:relative;
+      height:400px;
+      overflow:hidden;
+      animation: zoomIn 0.8s ease-out;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(1.1);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+
+    .article-hero img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .article-badge{
+      position:absolute;
+      top:24px;
+      left:24px;
+      background:linear-gradient(135deg,var(--p1),var(--p2));
+      color:white;
+      padding:10px 20px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    .article-body{
+      padding:40px;
+    }
+
+    .article-title{
+      font-family:'Playfair Display',serif;
+      font-size:48px;
+      font-weight:900;
+      margin-bottom:24px;
+      line-height:1.2;
+      color:#232323;
+      animation: fadeInUp 0.6s ease-out 0.2s backwards;
+    }
+
+    .article-meta{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin-bottom:32px;
+      padding-bottom:32px;
+      border-bottom:2px solid #f0f0f0;
+      animation: fadeInUp 0.6s ease-out 0.3s backwards;
+    }
+
+    .article-icon{
+      width:48px;
+      height:48px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--p3),var(--p4));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .article-meta-text{
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    .article-meta-text .reading-time{
+      font-weight:700;
+      color:#232323;
+      display:block;
+      margin-bottom:4px;
+    }
+
+    .article-content{
+      animation: fadeInUp 0.6s ease-out 0.4s backwards;
+    }
+
+    .article-content p{
+      line-height:1.8;
+      margin-bottom:20px;
+      font-size:17px;
+      color:#333;
+    }
+
+    .article-content h2{
+      font-family:'Playfair Display',serif;
+      font-size:32px;
+      font-weight:800;
+      margin:40px 0 20px;
+      color:var(--p1);
+    }
+
+    .article-content h3{
+      font-family:'Playfair Display',serif;
+      font-size:24px;
+      font-weight:700;
+      margin:32px 0 16px;
+      color:#232323;
+    }
+
+    .article-content ul, .article-content ol{
+      margin:20px 0 20px 24px;
+      line-height:1.8;
+    }
+
+    .article-content li{
+      margin-bottom:12px;
+      font-size:17px;
+      color:#333;
+    }
+
+    .article-content strong{
+      font-weight:700;
+      color:#232323;
+    }
+
+    .article-content em{
+      font-style:italic;
+      color:var(--muted);
+    }
+
+    .thank-you{
+      margin-top:60px;
+      padding:40px;
+      background:linear-gradient(135deg,rgba(255,107,107,0.1),rgba(78,205,196,0.1));
+      border:3px solid var(--p1);
+      border-radius:20px;
+      text-align:center;
+      animation: fadeInUp 0.6s ease-out 0.6s backwards;
+    }
+
+    .thank-you-title{
+      font-size:24px;
+      font-weight:800;
+      margin-bottom:20px;
+      color:#232323;
+    }
+
+    .thank-you-btn{
+      background:linear-gradient(135deg,var(--p1),var(--p2));
+      color:white;
+      border:0;
+      padding:14px 32px;
+      border-radius:12px;
+      font-weight:700;
+      font-size:16px;
+      cursor:pointer;
+      transition:all 0.3s;
+      box-shadow:0 4px 12px rgba(255,107,107,0.3);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      text-decoration:none;
+    }
+
+    .thank-you-btn:hover{
+      transform:translateY(-2px) scale(1.05);
+      box-shadow:0 6px 20px rgba(255,107,107,0.4);
+    }
+
+    @media (max-width:768px){
+      .mag-header{
+        padding:12px 16px;
+        flex-direction:column;
+        gap:12px;
+      }
+      
+      .article-main{
+        padding:20px 16px 60px;
+        margin:20px auto;
+      }
+      
+      .article-hero{
+        height:250px;
+      }
+      
+      .article-body{
+        padding:24px;
+      }
+      
+      .article-title{
+        font-size:32px;
+      }
+      
+      .article-content h2{
+        font-size:24px;
+      }
+      
+      .thank-you{
+        padding:24px;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="mag-header">
@@ -17,52 +345,84 @@
         <div style="font-size:13px;color:var(--muted)">Magazine créatif & inspirant ✨</div>
       </div>
     </div>
-    <nav class="mag-nav">
-      <a href="index.html">🏠 Accueil</a>
-    </nav>
+    <a href="index.html" class="back-btn">
+      ← Retour
+    </a>
   </header>
 
-  <main class="mag-main">
-    <div class="page-container">
-      <div class="spread-page">
-        <div class="spread-wrap">
-          <div class="spread-back">
-            <a href="index.html">← Retour au magazine</a>
-          </div>
-          <div class="spread-badge">Lifestyle</div>
-          <div class="spread">
-            <div class="left">
-              <h2>Les animaux qui volent votre cœur</h2>
-              <div class="lead">Une collection d'instantanés trop mignons pour adoucir la journée.</div>
-              <p class="body-text">Les animaux de compagnie apportent tellement de joie dans nos vies. Leur innocence et leur amour inconditionnel sont des cadeaux précieux.</p>
-              <p class="body-text">Découvrez notre sélection de photos adorables qui vont illuminer votre journée et vous rappeler pourquoi nous aimons tant nos compagnons à quatre pattes.</p>
-              <h4>Moments favoris</h4>
-              <ol>
-                <li>Les siestes au soleil</li>
-                <li>Les câlins spontanés</li>
-                <li>Les jeux interminables</li>
-                <li>Les regards complices</li>
-              </ol>
-            </div>
-            <div class="right">
-              <div class="article-img">
-                <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800&h=600&fit=crop" alt="Les animaux qui volent votre cœur">
-              </div>
-              <div class="spread-meta">
-                <div class="spread-meta-item">
-                  <div class="spread-meta-value">3 min</div>
-                  <div class="spread-meta-label">Lecture</div>
-                </div>
-                <div class="spread-meta-item">
-                  <div class="spread-meta-value">01 Sep</div>
-                  <div class="spread-meta-label">Publié</div>
-                </div>
-              </div>
-            </div>
+  <main class="article-main">
+    <article class="article-container">
+      <div class="article-hero">
+        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1200&h=600&fit=crop" alt="Snacks rapides & jolis">
+        <div class="article-badge">Food</div>
+      </div>
+
+      <div class="article-body">
+        <h1 class="article-title">Snacks rapides & jolis</h1>
+
+        <div class="article-meta">
+          <div class="article-icon">🍓</div>
+          <div class="article-meta-text">
+            <span class="reading-time">4 min de lecture</span>
+            <span>20 Août</span>
           </div>
         </div>
+
+        <div class="article-content">
+          <p>
+            Parfois, il suffit de quelques minutes pour créer un snack délicieux et esthétique qui transforme 
+            complètement votre pause. Ces recettes rapides sont parfaites pour les moments de créativité où 
+            vous avez besoin d'un petit boost d'énergie.
+          </p>
+          
+          <h2>Recette 1 : Tartines colorées</h2>
+          <p>
+            Des tartines qui font sourire ! Prenez du pain de seigle, étalez du fromage frais et décorez 
+            avec des légumes coupés en formes amusantes. Radis en forme de fleurs, concombres en étoiles, 
+            et tomates cerises pour les points colorés.
+          </p>
+
+          <h3>Ingrédients :</h3>
+          <ul>
+            <li>2 tranches de pain de seigle</li>
+            <li>4 c. à soupe de fromage frais</li>
+            <li>Radis, concombre, tomates cerises</li>
+            <li>Herbes fraîches pour la décoration</li>
+          </ul>
+
+          <h2>Recette 2 : Brochettes fruitées express</h2>
+          <p>
+            Enfilez des fruits de saison sur des piques en bois pour créer des brochettes joyeuses. 
+            L'alternance des couleurs et des textures rend ce snack aussi beau que bon.
+          </p>
+
+          <h3>Ingrédients :</h3>
+          <ul>
+            <li>Fraises, kiwi, ananas, raisin</li>
+            <li>Piques en bois</li>
+            <li>Quelques feuilles de menthe</li>
+          </ul>
+
+          <h2>Recette 3 : Yaourt parfait minute</h2>
+          <p>
+            Dans un verre transparent, alternez des couches de yaourt grec, de granola croustillant 
+            et de fruits rouges. La présentation en transparence rend ce snack particulièrement appétissant.
+          </p>
+
+          <p>
+            <strong>Astuce créative :</strong> Utilisez des emporte-pièces pour découper vos fruits et légumes 
+            en formes originales. Ces petits détails transforment un simple snack en moment spécial !
+          </p>
+        </div>
+
+        <div class="thank-you">
+          <p class="thank-you-title">✨ Merci d'avoir lu cet article ! ✨</p>
+          <a href="index.html" class="thank-you-btn">
+            ← Découvrir plus d'articles
+          </a>
+        </div>
       </div>
-    </div>
+    </article>
   </main>
 </body>
 </html>

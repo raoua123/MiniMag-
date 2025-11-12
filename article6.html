@@ -3,10 +3,338 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Papeterie mignonne DIY - MiniMag</title>
-  <meta name="description" content="Personnalisez vos cahiers et cartes en quelques étapes simples." />
-  <link rel="stylesheet" href="style.css">
+  <title>Hackez vos révisions — MiniMag</title>
+  <meta name="description" content="Techniques de mémorisation et organisation pour étudiants efficaces." />
+  <meta name="author" content="MiniMag" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root{
+      --bg1:#fff7fb; --bg2:#fffef6; --muted:#6b6b6b;
+      --p1:#ff6b6b; --p2:#4ecdc4; --p3:#ffd93d; --p4:#95e1d3;
+      --card:#ffffff; --shadow:0 16px 40px rgba(16,24,40,0.12); --radius:16px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    html,body{
+      height:100%;
+      background:linear-gradient(180deg,var(--bg1),var(--bg2));
+      font-family:'Inter',system-ui,sans-serif;
+      color:#232323;
+      overflow-x:hidden;
+    }
+
+    .mag-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:20px 30px;
+      background:rgba(255,255,255,0.8);
+      backdrop-filter:blur(10px);
+      box-shadow:0 4px 20px rgba(0,0,0,0.05);
+      position:sticky;
+      top:0;
+      z-index:100;
+      animation: slideDown 0.5s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .mag-logo{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .mag-logo .mark{
+      width:60px;
+      height:60px;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--p1),var(--p2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:white;
+      font-weight:900;
+      font-family:'Playfair Display',serif;
+      font-size:22px;
+      box-shadow:var(--shadow);
+      transform:rotate(-3deg);
+      transition: all 0.3s;
+    }
+
+    .mag-logo .mark:hover {
+      transform: rotate(3deg) scale(1.1);
+    }
+
+    .mag-logo h1{
+      margin:0;
+      font-size:22px;
+      font-family:'Playfair Display',serif;
+    }
+
+    .back-btn{
+      background:linear-gradient(135deg,var(--p1),var(--p2));
+      color:white;
+      border:0;
+      padding:12px 24px;
+      border-radius:12px;
+      font-weight:700;
+      cursor:pointer;
+      transition:all 0.3s;
+      box-shadow:0 4px 12px rgba(255,107,107,0.3);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      text-decoration:none;
+    }
+
+    .back-btn:hover{
+      transform:translateX(-4px) scale(1.05);
+      box-shadow:0 6px 20px rgba(255,107,107,0.4);
+    }
+
+    /* Article Content */
+    .article-main{
+      max-width:1000px;
+      margin:40px auto;
+      padding:0 30px 100px;
+    }
+
+    .article-container{
+      background:white;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 20px 60px rgba(0,0,0,0.15);
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .article-hero{
+      position:relative;
+      height:400px;
+      overflow:hidden;
+      animation: zoomIn 0.8s ease-out;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(1.1);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+
+    .article-hero img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .article-badge{
+      position:absolute;
+      top:24px;
+      left:24px;
+      background:linear-gradient(135deg,var(--p1),var(--p2));
+      color:white;
+      padding:10px 20px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    .article-body{
+      padding:40px;
+    }
+
+    .article-title{
+      font-family:'Playfair Display',serif;
+      font-size:48px;
+      font-weight:900;
+      margin-bottom:24px;
+      line-height:1.2;
+      color:#232323;
+      animation: fadeInUp 0.6s ease-out 0.2s backwards;
+    }
+
+    .article-meta{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin-bottom:32px;
+      padding-bottom:32px;
+      border-bottom:2px solid #f0f0f0;
+      animation: fadeInUp 0.6s ease-out 0.3s backwards;
+    }
+
+    .article-icon{
+      width:48px;
+      height:48px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--p3),var(--p4));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .article-meta-text{
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    .article-meta-text .reading-time{
+      font-weight:700;
+      color:#232323;
+      display:block;
+      margin-bottom:4px;
+    }
+
+    .article-content{
+      animation: fadeInUp 0.6s ease-out 0.4s backwards;
+    }
+
+    .article-content p{
+      line-height:1.8;
+      margin-bottom:20px;
+      font-size:17px;
+      color:#333;
+    }
+
+    .article-content h2{
+      font-family:'Playfair Display',serif;
+      font-size:32px;
+      font-weight:800;
+      margin:40px 0 20px;
+      color:var(--p1);
+    }
+
+    .article-content h3{
+      font-family:'Playfair Display',serif;
+      font-size:24px;
+      font-weight:700;
+      margin:32px 0 16px;
+      color:#232323;
+    }
+
+    .article-content ul, .article-content ol{
+      margin:20px 0 20px 24px;
+      line-height:1.8;
+    }
+
+    .article-content li{
+      margin-bottom:12px;
+      font-size:17px;
+      color:#333;
+    }
+
+    .article-content strong{
+      font-weight:700;
+      color:#232323;
+    }
+
+    .article-content em{
+      font-style:italic;
+      color:var(--muted);
+    }
+
+    .thank-you{
+      margin-top:60px;
+      padding:40px;
+      background:linear-gradient(135deg,rgba(255,107,107,0.1),rgba(78,205,196,0.1));
+      border:3px solid var(--p1);
+      border-radius:20px;
+      text-align:center;
+      animation: fadeInUp 0.6s ease-out 0.6s backwards;
+    }
+
+    .thank-you-title{
+      font-size:24px;
+      font-weight:800;
+      margin-bottom:20px;
+      color:#232323;
+    }
+
+    .thank-you-btn{
+      background:linear-gradient(135deg,var(--p1),var(--p2));
+      color:white;
+      border:0;
+      padding:14px 32px;
+      border-radius:12px;
+      font-weight:700;
+      font-size:16px;
+      cursor:pointer;
+      transition:all 0.3s;
+      box-shadow:0 4px 12px rgba(255,107,107,0.3);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      text-decoration:none;
+    }
+
+    .thank-you-btn:hover{
+      transform:translateY(-2px) scale(1.05);
+      box-shadow:0 6px 20px rgba(255,107,107,0.4);
+    }
+
+    @media (max-width:768px){
+      .mag-header{
+        padding:12px 16px;
+        flex-direction:column;
+        gap:12px;
+      }
+      
+      .article-main{
+        padding:20px 16px 60px;
+        margin:20px auto;
+      }
+      
+      .article-hero{
+        height:250px;
+      }
+      
+      .article-body{
+        padding:24px;
+      }
+      
+      .article-title{
+        font-size:32px;
+      }
+      
+      .article-content h2{
+        font-size:24px;
+      }
+      
+      .thank-you{
+        padding:24px;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="mag-header">
@@ -17,51 +345,85 @@
         <div style="font-size:13px;color:var(--muted)">Magazine créatif & inspirant ✨</div>
       </div>
     </div>
-    <nav class="mag-nav">
-      <a href="index.html">🏠 Accueil</a>
-    </nav>
+    <a href="index.html" class="back-btn">
+      ← Retour
+    </a>
   </header>
 
-  <main class="mag-main">
-    <div class="page-container">
-      <div class="spread-page">
-        <div class="spread-wrap">
-          <div class="spread-back">
-            <a href="index.html">← Retour au magazine</a>
-          </div>
-          <div class="spread-badge">DIY</div>
-          <div class="spread">
-            <div class="left">
-              <h2>Papeterie mignonne DIY</h2>
-              <div class="lead">Personnalisez vos cahiers et cartes en quelques étapes.</div>
-              <p class="body-text">Créez votre propre papeterie unique avec des matériaux simples et beaucoup de créativité.</p>
-              <h4>Matériel nécessaire</h4>
-              <ol>
-                <li>Cahiers vierges et carnets</li>
-                <li>Washi tape coloré</li>
-                <li>Stickers et autocollants</li>
-                <li>Feutres et crayons de couleur</li>
-              </ol>
-            </div>
-            <div class="right">
-              <div class="article-img">
-                <img src="https://images.unsplash.com/photo-1452802447250-470a88ac82bc?w=800&h=600&fit=crop" alt="Papeterie mignonne DIY">
-              </div>
-              <div class="spread-meta">
-                <div class="spread-meta-item">
-                  <div class="spread-meta-value">6 min</div>
-                  <div class="spread-meta-label">Lecture</div>
-                </div>
-                <div class="spread-meta-item">
-                  <div class="spread-meta-value">14 Juin</div>
-                  <div class="spread-meta-label">Publié</div>
-                </div>
-              </div>
-            </div>
+  <main class="article-main">
+    <article class="article-container">
+      <div class="article-hero">
+        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&h=600&fit=crop" alt="Hackez vos révisions">
+        <div class="article-badge">Study</div>
+      </div>
+
+      <div class="article-body">
+        <h1 class="article-title">Hackez vos révisions</h1>
+
+        <div class="article-meta">
+          <div class="article-icon">📚</div>
+          <div class="article-meta-text">
+            <span class="reading-time">8 min de lecture</span>
+            <span>30 Mai</span>
           </div>
         </div>
+
+        <div class="article-content">
+          <p>
+            Devenez un étudiant efficace grâce à des techniques de mémorisation et d'organisation éprouvées. 
+            Apprenez à travailler moins pour retenir plus, et transformez vos sessions de révision en 
+            moments productifs et agréables.
+          </p>
+          
+          <h2>Techniques de mémorisation efficaces</h2>
+          <p>
+            La mémoire fonctionne mieux quand on l'associe à des images, des émotions ou des histoires. 
+            Au lieu d'apprendre par cœur, créez des associations mentales qui rendront l'information 
+            plus facile à retrouver.
+          </p>
+
+          <h3>Méthodes à essayer :</h3>
+          <ul>
+            <li><strong>La technique des loci :</strong> Associez chaque information à un lieu que vous connaissez bien</li>
+            <li><strong>Les flashcards :</strong> Créez des cartes questions-réponses pour réviser activement</li>
+            <li><strong>Le palais mental :</strong> Construisez un "palais" dans votre esprit pour stocker les informations</li>
+            <li><strong>Les acronymes :</strong> Formez des mots avec les premières lettres des concepts à retenir</li>
+          </ul>
+
+          <h2>Organisation du temps d'étude</h2>
+          <p>
+            La clé d'une révision réussie réside dans une bonne organisation. Utilisez la technique 
+            Pomodoro (25 minutes de travail, 5 minutes de pause) pour maintenir votre concentration 
+            et éviter l'épuisement.
+          </p>
+
+          <h3>Planning idéal :</h3>
+          <ol>
+            <li><strong>Matin :</strong> Révision des concepts difficiles (mémoire fraîche)</li>
+            <li><strong>Après-midi :</strong> Exercices pratiques et applications</li>
+            <li><strong>Soir :</strong> Révision légère et planification du lendemain</li>
+          </ol>
+
+          <h2>Créer un environnement propice</h2>
+          <p>
+            Votre espace de travail influence directement votre capacité à vous concentrer. Choisissez 
+            un endroit bien éclairé, sans distractions, et personnalisez-le pour qu'il vous donne envie d'étudier.
+          </p>
+
+          <p>
+            <strong>Le secret des étudiants efficaces :</strong> Ils ne passent pas plus de temps à étudier, 
+            mais ils utilisent mieux le temps qu'ils consacrent aux révisions. Qualité plutôt que quantité !
+          </p>
+        </div>
+
+        <div class="thank-you">
+          <p class="thank-you-title">✨ Merci d'avoir lu cet article ! ✨</p>
+          <a href="index.html" class="thank-you-btn">
+            ← Découvrir plus d'articles
+          </a>
+        </div>
       </div>
-    </div>
+    </article>
   </main>
 </body>
 </html>

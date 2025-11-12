@@ -3,10 +3,338 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Créez votre coin créatif - MiniMag</title>
-  <meta name="description" content="Un guide complet pour aménager un espace inspirant qui vous ressemble." />
-  <link rel="stylesheet" href="style.css">
+  <title>Créez votre coin créatif — MiniMag</title>
+  <meta name="description" content="Des astuces simples pour rendre votre bureau plus joyeux et productif." />
+  <meta name="author" content="MiniMag" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root{
+      --bg1:#fff7fb; --bg2:#fffef6; --muted:#6b6b6b;
+      --p1:#ff6b6b; --p2:#4ecdc4; --p3:#ffd93d; --p4:#95e1d3;
+      --card:#ffffff; --shadow:0 16px 40px rgba(16,24,40,0.12); --radius:16px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    html,body{
+      height:100%;
+      background:linear-gradient(180deg,var(--bg1),var(--bg2));
+      font-family:'Inter',system-ui,sans-serif;
+      color:#232323;
+      overflow-x:hidden;
+    }
+
+    .mag-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:20px 30px;
+      background:rgba(255,255,255,0.8);
+      backdrop-filter:blur(10px);
+      box-shadow:0 4px 20px rgba(0,0,0,0.05);
+      position:sticky;
+      top:0;
+      z-index:100;
+      animation: slideDown 0.5s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .mag-logo{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .mag-logo .mark{
+      width:60px;
+      height:60px;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--p1),var(--p2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:white;
+      font-weight:900;
+      font-family:'Playfair Display',serif;
+      font-size:22px;
+      box-shadow:var(--shadow);
+      transform:rotate(-3deg);
+      transition: all 0.3s;
+    }
+
+    .mag-logo .mark:hover {
+      transform: rotate(3deg) scale(1.1);
+    }
+
+    .mag-logo h1{
+      margin:0;
+      font-size:22px;
+      font-family:'Playfair Display',serif;
+    }
+
+    .back-btn{
+      background:linear-gradient(135deg,var(--p1),var(--p2));
+      color:white;
+      border:0;
+      padding:12px 24px;
+      border-radius:12px;
+      font-weight:700;
+      cursor:pointer;
+      transition:all 0.3s;
+      box-shadow:0 4px 12px rgba(255,107,107,0.3);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      text-decoration:none;
+    }
+
+    .back-btn:hover{
+      transform:translateX(-4px) scale(1.05);
+      box-shadow:0 6px 20px rgba(255,107,107,0.4);
+    }
+
+    /* Article Content */
+    .article-main{
+      max-width:1000px;
+      margin:40px auto;
+      padding:0 30px 100px;
+    }
+
+    .article-container{
+      background:white;
+      border-radius:24px;
+      overflow:hidden;
+      box-shadow:0 20px 60px rgba(0,0,0,0.15);
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .article-hero{
+      position:relative;
+      height:400px;
+      overflow:hidden;
+      animation: zoomIn 0.8s ease-out;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(1.1);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+
+    .article-hero img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .article-badge{
+      position:absolute;
+      top:24px;
+      left:24px;
+      background:linear-gradient(135deg,var(--p1),var(--p2));
+      color:white;
+      padding:10px 20px;
+      border-radius:999px;
+      font-weight:800;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      box-shadow:0 6px 20px rgba(0,0,0,0.2);
+    }
+
+    .article-body{
+      padding:40px;
+    }
+
+    .article-title{
+      font-family:'Playfair Display',serif;
+      font-size:48px;
+      font-weight:900;
+      margin-bottom:24px;
+      line-height:1.2;
+      color:#232323;
+      animation: fadeInUp 0.6s ease-out 0.2s backwards;
+    }
+
+    .article-meta{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin-bottom:32px;
+      padding-bottom:32px;
+      border-bottom:2px solid #f0f0f0;
+      animation: fadeInUp 0.6s ease-out 0.3s backwards;
+    }
+
+    .article-icon{
+      width:48px;
+      height:48px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--p3),var(--p4));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .article-meta-text{
+      font-size:14px;
+      color:var(--muted);
+    }
+
+    .article-meta-text .reading-time{
+      font-weight:700;
+      color:#232323;
+      display:block;
+      margin-bottom:4px;
+    }
+
+    .article-content{
+      animation: fadeInUp 0.6s ease-out 0.4s backwards;
+    }
+
+    .article-content p{
+      line-height:1.8;
+      margin-bottom:20px;
+      font-size:17px;
+      color:#333;
+    }
+
+    .article-content h2{
+      font-family:'Playfair Display',serif;
+      font-size:32px;
+      font-weight:800;
+      margin:40px 0 20px;
+      color:var(--p1);
+    }
+
+    .article-content h3{
+      font-family:'Playfair Display',serif;
+      font-size:24px;
+      font-weight:700;
+      margin:32px 0 16px;
+      color:#232323;
+    }
+
+    .article-content ul, .article-content ol{
+      margin:20px 0 20px 24px;
+      line-height:1.8;
+    }
+
+    .article-content li{
+      margin-bottom:12px;
+      font-size:17px;
+      color:#333;
+    }
+
+    .article-content strong{
+      font-weight:700;
+      color:#232323;
+    }
+
+    .article-content em{
+      font-style:italic;
+      color:var(--muted);
+    }
+
+    .thank-you{
+      margin-top:60px;
+      padding:40px;
+      background:linear-gradient(135deg,rgba(255,107,107,0.1),rgba(78,205,196,0.1));
+      border:3px solid var(--p1);
+      border-radius:20px;
+      text-align:center;
+      animation: fadeInUp 0.6s ease-out 0.6s backwards;
+    }
+
+    .thank-you-title{
+      font-size:24px;
+      font-weight:800;
+      margin-bottom:20px;
+      color:#232323;
+    }
+
+    .thank-you-btn{
+      background:linear-gradient(135deg,var(--p1),var(--p2));
+      color:white;
+      border:0;
+      padding:14px 32px;
+      border-radius:12px;
+      font-weight:700;
+      font-size:16px;
+      cursor:pointer;
+      transition:all 0.3s;
+      box-shadow:0 4px 12px rgba(255,107,107,0.3);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      text-decoration:none;
+    }
+
+    .thank-you-btn:hover{
+      transform:translateY(-2px) scale(1.05);
+      box-shadow:0 6px 20px rgba(255,107,107,0.4);
+    }
+
+    @media (max-width:768px){
+      .mag-header{
+        padding:12px 16px;
+        flex-direction:column;
+        gap:12px;
+      }
+      
+      .article-main{
+        padding:20px 16px 60px;
+        margin:20px auto;
+      }
+      
+      .article-hero{
+        height:250px;
+      }
+      
+      .article-body{
+        padding:24px;
+      }
+      
+      .article-title{
+        font-size:32px;
+      }
+      
+      .article-content h2{
+        font-size:24px;
+      }
+      
+      .thank-you{
+        padding:24px;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="mag-header">
@@ -17,53 +345,69 @@
         <div style="font-size:13px;color:var(--muted)">Magazine créatif & inspirant ✨</div>
       </div>
     </div>
-    <nav class="mag-nav">
-      <a href="index.html">🏠 Accueil</a>
-    </nav>
+    <a href="index.html" class="back-btn">
+      ← Retour
+    </a>
   </header>
 
-  <main class="mag-main">
-    <div class="page-container">
-      <div class="spread-page">
-        <div class="spread-wrap">
-          <div class="spread-back">
-            <a href="index.html">← Retour au magazine</a>
-          </div>
-          <div class="spread-badge">Design</div>
-          <div class="spread">
-            <div class="left">
-              <h2>Créez votre coin créatif</h2>
-              <div class="lead">Un guide complet pour aménager un espace inspirant qui vous ressemble.</div>
-              <p class="body-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet, magna a hendrerit fermentum, arcu risus tincidunt mauris, a efficitur nisl quam a augue. Praesent at nibh a est tempor cursus.</p>
-              <p class="body-text">Integer vel massa at arcu pulvinar feugiat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed euismod, nisl nec ultricies lacinia, nisl nisl aliquam nisl.</p>
-              <h4>Étapes clés</h4>
-              <ol>
-                <li>Choisissez vos couleurs dominantes pour créer une ambiance cohérente</li>
-                <li>Ajoutez des textures avec des tapis, coussins et papier peint</li>
-                <li>Personnalisez avec des stickers et cartes qui vous inspirent</li>
-                <li>Organisez votre espace pour favoriser la créativité et le bien-être</li>
-              </ol>
-              <p class="body-text">N'oubliez pas que l'essentiel est de créer un espace qui vous ressemble et dans lequel vous vous sentez bien. Laissez libre cours à votre imagination!</p>
-            </div>
-            <div class="right">
-              <div class="article-img">
-                <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop" alt="Créez votre coin créatif">
-              </div>
-              <div class="spread-meta">
-                <div class="spread-meta-item">
-                  <div class="spread-meta-value">5 min</div>
-                  <div class="spread-meta-label">Lecture</div>
-                </div>
-                <div class="spread-meta-item">
-                  <div class="spread-meta-value">12 Oct</div>
-                  <div class="spread-meta-label">Publié</div>
-                </div>
-              </div>
-            </div>
+  <main class="article-main">
+    <article class="article-container">
+      <div class="article-hero">
+        <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1200&h=600&fit=crop" alt="Créez votre coin créatif">
+        <div class="article-badge">Design</div>
+      </div>
+
+      <div class="article-body">
+        <h1 class="article-title">Créez votre coin créatif</h1>
+
+        <div class="article-meta">
+          <div class="article-icon">💡</div>
+          <div class="article-meta-text">
+            <span class="reading-time">5 min de lecture</span>
+            <span>12 Oct</span>
           </div>
         </div>
+
+        <div class="article-content">
+          <p>
+            Un espace de travail inspirant commence par de petits détails qui font toute la différence.
+            La lumière naturelle, les plantes vertes, et une palette de couleurs douces créent une atmosphère propice à la créativité.
+          </p>
+          
+          <h2>Organisez votre espace</h2>
+          <p>
+            Organisez votre bureau avec des accessoires mignons et fonctionnels. Les rangements colorés,
+            les cahiers personnalisés et les petites décorations peuvent transformer un espace ordinaire en un lieu magique.
+          </p>
+
+          <h3>Astuces pratiques :</h3>
+          <ul>
+            <li>Utilisez des boîtes de rangement colorées pour organiser vos fournitures</li>
+            <li>Installez une plante verte pour apporter de la vie</li>
+            <li>Choisissez un éclairage doux et chaleureux</li>
+            <li>Ajoutez des cadres avec vos citations préférées</li>
+          </ul>
+
+          <h2>Personnalisez votre bureau</h2>
+          <p>
+            N'oubliez pas d'ajouter des éléments personnels : photos, illustrations, objets qui vous inspirent.
+            Votre bureau doit raconter votre histoire.
+          </p>
+
+          <p>
+            <strong>Conseil de pro :</strong> Changez régulièrement la décoration de votre espace pour maintenir
+            l'inspiration et la créativité au maximum. Un simple bouquet de fleurs fraîches peut faire toute la différence !
+          </p>
+        </div>
+
+        <div class="thank-you">
+          <p class="thank-you-title">✨ Merci d'avoir lu cet article ! ✨</p>
+          <a href="index.html" class="thank-you-btn">
+            ← Découvrir plus d'articles
+          </a>
+        </div>
       </div>
-    </div>
+    </article>
   </main>
 </body>
 </html>
