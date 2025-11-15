@@ -1,18 +1,19 @@
-# MiniMag — Magazine en ligne
-
-MiniMag est un projet de site web de type magazine en ligne, interactif et responsive, réalisé dans le cadre d'un mini-projet web. Il utilise HTML5, CSS3 et JavaScript pour offrir une expérience utilisateur moderne.
+Un magazine en ligne créatif et interactif avec design coloré et fonctionnalités JavaScript modernes.
 
 ## Fonctionnalités
 
-- Page d'accueil dynamique avec grille d'articles
-- 6 pages d'articles avec design cohérent
-- Design responsive pour tous appareils
-- Interactions JavaScript avancées
-- Animations fluides et effets visuels
-- Navigation intuitive
+- **Design Responsive** - S'adapte à tous les appareils
+- **Navigation Dynamique** - Système de navigation fluide
+- **Carrousel d'Images** - Présentation visuelle attractive
+- **Système de Likes/Commentaires** - Interactions sociales persistantes
+- **Menu Dynamique** - Apparition/disparition au scroll
+- **Témoignages Animés** - Rotation automatique des avis
+- **Validation de Formulaire** - Vérification côté client
+- **Animations CSS** - Transitions douces et modernes
 
-## Technologies
+## Technologies Utilisées
 
-- HTML5 - Structure sémantique
-- CSS3 - Animations et mise en page
-- JavaScript - Interactions dynamiques
+- **HTML5** - Structure sémantique
+- **CSS3** - Animations et design responsive
+- **JavaScript ES6+** - Interactivité et fonctionnalités dynamiques
+- **LocalStorage** - Persistance des données utilisateur
