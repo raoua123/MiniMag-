@@ -263,6 +263,215 @@
       color:var(--muted);
     }
 
+    /* Interactions Section */
+    .interactions-section {
+      margin: 60px 0 40px;
+      padding: 40px;
+      background: linear-gradient(135deg, rgba(255,107,107,0.05), rgba(78,205,196,0.05));
+      border-radius: 20px;
+      border: 2px solid rgba(255,107,107,0.1);
+      animation: fadeInUp 0.6s ease-out 0.5s backwards;
+    }
+
+    .interactions-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .interactions-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #232323;
+    }
+
+    .interaction-stats {
+      display: flex;
+      gap: 30px;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      padding: 12px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .stat-count {
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--p1);
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .interaction-buttons {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .interaction-btn {
+      background: white;
+      border: 2px solid #f0f0f0;
+      padding: 12px 24px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .interaction-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .interaction-btn.like-btn:hover {
+      border-color: #ff6b6b;
+      color: #ff6b6b;
+    }
+
+    .interaction-btn.comment-btn:hover {
+      border-color: #4ecdc4;
+      color: #4ecdc4;
+    }
+
+    .interaction-btn.liked {
+      background: #ff6b6b;
+      color: white;
+      border-color: #ff6b6b;
+      animation: heartBeat 0.6s;
+    }
+
+    @keyframes heartBeat {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.1); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Comments Section */
+    .comments-section {
+      margin-top: 30px;
+    }
+
+    .comments-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #232323;
+    }
+
+    .comment-form {
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-family: inherit;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--p1);
+    }
+
+    .submit-comment-btn {
+      background: linear-gradient(135deg, var(--p1), var(--p2));
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .submit-comment-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255,107,107,0.3);
+    }
+
+    .comments-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .comment {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border-left: 4px solid var(--p1);
+      animation: fadeInUp 0.4s ease-out;
+    }
+
+    .comment-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .comment-author {
+      font-weight: 700;
+      color: #232323;
+    }
+
+    .comment-date {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .comment-text {
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .no-comments {
+      text-align: center;
+      padding: 40px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
     .thank-you{
       margin-top:60px;
       padding:40px;
@@ -328,6 +537,24 @@
       
       .article-content h2{
         font-size:24px;
+      }
+      
+      .interactions-section {
+        padding: 24px;
+        margin: 40px 0;
+      }
+      
+      .interactions-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .interaction-stats {
+        gap: 15px;
+      }
+      
+      .interaction-buttons {
+        flex-direction: column;
       }
       
       .thank-you{
@@ -404,6 +631,57 @@
           </p>
         </div>
 
+        <!-- Interactions Section -->
+        <section class="interactions-section">
+          <div class="interactions-header">
+            <h2 class="interactions-title">Interactions</h2>
+            <div class="interaction-stats">
+              <div class="stat-item">
+                <span class="stat-count" id="likeCount">0</span>
+                <span class="stat-label">J'aime</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-count" id="commentCount">0</span>
+                <span class="stat-label">Commentaires</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="interaction-buttons">
+            <button class="interaction-btn like-btn" id="articleLikeBtn">
+              ❤️ J'aime cet article
+            </button>
+            <button class="interaction-btn comment-btn" id="showCommentFormBtn">
+              💬 Ajouter un commentaire
+            </button>
+          </div>
+
+          <!-- Comments Section -->
+          <div class="comments-section">
+            <h3 class="comments-title">Commentaires</h3>
+            
+            <!-- Comment Form -->
+            <form class="comment-form" id="commentForm" style="display: none;">
+              <div class="form-group">
+                <label for="commentAuthor">Votre nom</label>
+                <input type="text" id="commentAuthor" required>
+              </div>
+              <div class="form-group">
+                <label for="commentText">Votre commentaire</label>
+                <textarea id="commentText" rows="4" required></textarea>
+              </div>
+              <button type="submit" class="submit-comment-btn">Publier le commentaire</button>
+            </form>
+
+            <!-- Comments List -->
+            <div class="comments-list" id="commentsList">
+              <div class="no-comments" id="noComments">
+                Soyez le premier à commenter cet article !
+              </div>
+            </div>
+          </div>
+        </section>
+
         <div class="thank-you">
           <p class="thank-you-title">✨ Merci d'avoir lu cet article ! ✨</p>
           <a href="index.html" class="thank-you-btn">
@@ -413,5 +691,137 @@
       </div>
     </article>
   </main>
+
+  <script>
+    class ArticleInteractions {
+      constructor() {
+        this.articleId = 'article4'; // Unique ID for this article
+        this.likes = JSON.parse(localStorage.getItem('articleLikes')) || {};
+        this.comments = JSON.parse(localStorage.getItem('articleComments')) || {};
+        this.init();
+      }
+
+      init() {
+        this.setupEventListeners();
+        this.updateDisplay();
+      }
+
+      setupEventListeners() {
+        document.getElementById('articleLikeBtn').addEventListener('click', () => {
+          this.handleLike();
+        });
+
+        document.getElementById('showCommentFormBtn').addEventListener('click', () => {
+          this.toggleCommentForm();
+        });
+
+        document.getElementById('commentForm').addEventListener('submit', (e) => {
+          e.preventDefault();
+          this.handleComment();
+        });
+      }
+
+      handleLike() {
+        const currentLikes = this.likes[this.articleId] || 0;
+        this.likes[this.articleId] = currentLikes + 1;
+        localStorage.setItem('articleLikes', JSON.stringify(this.likes));
+        
+        const likeBtn = document.getElementById('articleLikeBtn');
+        likeBtn.classList.add('liked');
+        likeBtn.innerHTML = '❤️ Merci pour votre like !';
+        
+        setTimeout(() => {
+          likeBtn.classList.remove('liked');
+          likeBtn.innerHTML = '❤️ J\'aime cet article';
+        }, 2000);
+        
+        this.updateDisplay();
+      }
+
+      toggleCommentForm() {
+        const form = document.getElementById('commentForm');
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        
+        if (form.style.display === 'block') {
+          form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+
+      handleComment() {
+        const author = document.getElementById('commentAuthor').value.trim();
+        const text = document.getElementById('commentText').value.trim();
+        
+        if (!author || !text) {
+          alert('Veuillez remplir tous les champs');
+          return;
+        }
+
+        const comment = {
+          id: Date.now(),
+          author: author,
+          text: text,
+          date: new Date().toLocaleDateString('fr-FR')
+        };
+
+        if (!this.comments[this.articleId]) {
+          this.comments[this.articleId] = [];
+        }
+        
+        this.comments[this.articleId].unshift(comment); // Add to beginning
+        localStorage.setItem('articleComments', JSON.stringify(this.comments));
+
+        document.getElementById('commentForm').reset();
+        document.getElementById('commentForm').style.display = 'none';
+        
+        this.updateDisplay();
+        
+        alert('Merci pour votre commentaire !');
+      }
+
+      updateDisplay() {
+        const likeCount = this.likes[this.articleId] || 0;
+        document.getElementById('likeCount').textContent = likeCount;
+
+        const articleComments = this.comments[this.articleId] || [];
+        document.getElementById('commentCount').textContent = articleComments.length;
+
+        this.renderComments(articleComments);
+      }
+
+      renderComments(comments) {
+        const commentsList = document.getElementById('commentsList');
+        const noComments = document.getElementById('noComments');
+
+        if (comments.length === 0) {
+          noComments.style.display = 'block';
+          commentsList.innerHTML = '';
+          commentsList.appendChild(noComments);
+          return;
+        }
+
+        noComments.style.display = 'none';
+        
+        commentsList.innerHTML = comments.map(comment => `
+          <div class="comment" data-comment-id="${comment.id}">
+            <div class="comment-header">
+              <span class="comment-author">${this.escapeHtml(comment.author)}</span>
+              <span class="comment-date">${comment.date}</span>
+            </div>
+            <div class="comment-text">${this.escapeHtml(comment.text)}</div>
+          </div>
+        `).join('');
+      }
+
+      escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      new ArticleInteractions();
+    });
+  </script>
 </body>
 </html>

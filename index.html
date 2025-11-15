@@ -9,474 +9,10 @@
   <meta property="og:title" content="MiniMag — Magazine en ligne mignon" />
   <meta property="og:description" content="MiniMag - un mini magazine coloré, interactif et responsive" />
   <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  
-  <style>
-    :root{
-      --bg1:#fff7fb; --bg2:#fffef6; --muted:#6b6b6b;
-      --p1:#ff6b6b; --p2:#4ecdc4; --p3:#ffd93d; --p4:#95e1d3;
-      --card:#ffffff; --shadow:0 16px 40px rgba(16,24,40,0.12); --radius:16px;
-    }
-
-    *{box-sizing:border-box;margin:0;padding:0}
-
-    html,body{
-      height:100%;
-      background:linear-gradient(180deg,var(--bg1),var(--bg2));
-      font-family:'Inter',system-ui,sans-serif;
-      color:#232323;
-      overflow-x:hidden;
-    }
-
-    body{
-      cursor:none;
-    }
-
-    /* Custom Cursor */
-    .custom-cursor {
-      position: fixed;
-      width: 32px;
-      height: 32px;
-      pointer-events: none;
-      z-index: 9999;
-      font-size: 24px;
-      transition: transform 0.1s ease-out;
-      will-change: transform;
-    }
-
-    /* Loader */
-    .loader{
-      position:fixed;
-      inset:0;
-      background:linear-gradient(135deg,rgba(255,255,255,0.98),rgba(255,247,251,0.98));
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:9999;
-      backdrop-filter:blur(20px);
-      animation:fadeOut 0.5s ease-out 1.5s forwards;
-    }
-
-    .loader-content{
-      text-align:center;
-    }
-
-    .loader-title{
-      font-weight:900;
-      font-size:48px;
-      font-family:'Playfair Display',serif;
-      background:linear-gradient(135deg,var(--p1),var(--p2));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-      animation: pulse 2s infinite;
-    }
-
-    .loader-dots{
-      display:flex;
-      gap:8px;
-      justify-content:center;
-      margin-top:12px;
-    }
-
-    .loader .dot{
-      width:16px;
-      height:16px;
-      border-radius:50%;
-      animation:pop 1s infinite;
-    }
-
-    .dot:nth-child(1){background:var(--p1);animation-delay:0s}
-    .dot:nth-child(2){background:var(--p2);animation-delay:0.15s}
-    .dot:nth-child(3){background:var(--p3);animation-delay:0.3s}
-
-    @keyframes pop{
-      0%,100%{transform:scale(0.8);opacity:0.5}
-      50%{transform:scale(1.3);opacity:1}
-    }
-
-    @keyframes pulse {
-      0%,100%{transform:scale(1)}
-      50%{transform:scale(1.05)}
-    }
-
-    @keyframes fadeOut{
-      to{opacity:0;visibility:hidden}
-    }
-
-    /* Header */
-    .mag-header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:20px 30px;
-      background:rgba(255,255,255,0.8);
-      backdrop-filter:blur(10px);
-      box-shadow:0 4px 20px rgba(0,0,0,0.05);
-      position:sticky;
-      top:0;
-      z-index:100;
-      animation: slideDown 0.5s ease-out;
-    }
-
-    @keyframes slideDown {
-      from {
-        transform: translateY(-100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    .mag-logo{
-      display:flex;
-      align-items:center;
-      gap:14px;
-    }
-
-    .mag-logo .mark{
-      width:60px;
-      height:60px;
-      border-radius:14px;
-      background:linear-gradient(135deg,var(--p1),var(--p2));
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:white;
-      font-weight:900;
-      font-family:'Playfair Display',serif;
-      font-size:22px;
-      box-shadow:var(--shadow);
-      transform:rotate(-3deg);
-      transition: all 0.3s;
-    }
-
-    .mag-logo .mark:hover {
-      transform: rotate(3deg) scale(1.1);
-    }
-
-    .mag-logo h1{
-      margin:0;
-      font-size:22px;
-      font-family:'Playfair Display',serif;
-    }
-
-    .mag-nav a{
-      background:linear-gradient(135deg,var(--p1),var(--p2));
-      color:white;
-      border:0;
-      padding:10px 18px;
-      border-radius:12px;
-      font-weight:700;
-      cursor:pointer;
-      transition:all 0.3s;
-      box-shadow:0 4px 12px rgba(255,107,107,0.3);
-      display:inline-block;
-      text-decoration:none;
-    }
-
-    .mag-nav a:hover{
-      transform:translateY(-2px) scale(1.05);
-      box-shadow:0 6px 20px rgba(255,107,107,0.4);
-    }
-
-    /* Main */
-    .mag-main{
-      padding:20px 30px 100px;
-      position:relative;
-      max-width:1400px;
-      margin: 0 auto;
-    }
-
-    .home-page{
-      position:relative;
-      padding:30px;
-      min-height:600px;
-    }
-
-    .home-title{
-      font-family:'Playfair Display',serif;
-      font-size:48px;
-      margin-bottom:8px;
-      color:var(--p1);
-      animation: fadeInUp 0.6s ease-out;
-    }
-
-    .home-subtitle{
-      color:var(--muted);
-      margin-bottom:30px;
-      font-size:14px;
-      animation: fadeInUp 0.6s ease-out 0.1s backwards;
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Decorative Elements */
-    .arrow{
-      position:absolute;
-      pointer-events:none;
-      z-index:10;
-      font-size:32px;
-      animation:bounce 2s infinite;
-      opacity: 0;
-      animation: bounceIn 0.6s ease-out forwards, bounce 2s infinite 0.6s;
-    }
-
-    .arrow1{top:10%;right:5%;transform:rotate(15deg);color:var(--p1)}
-    .arrow2{top:50%;left:3%;transform:rotate(-25deg);color:var(--p2); animation-delay: 0.2s}
-    .arrow3{bottom:15%;right:8%;transform:rotate(45deg);color:var(--p3); animation-delay: 0.4s}
-
-    @keyframes bounceIn {
-      from {
-        opacity: 0;
-        transform: scale(0);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes bounce{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-10px)}
-    }
-
-    .sticker{
-      position:absolute;
-      padding:8px 16px;
-      border-radius:999px;
-      font-weight:800;
-      font-size:13px;
-      box-shadow:0 6px 20px rgba(0,0,0,0.15);
-      z-index:15;
-      animation:float 3s ease-in-out infinite;
-      transform-origin:center;
-      color: white;
-    }
-
-    .sticker1{background:linear-gradient(135deg,#ffeb3b,#ffc107);color:#333;top:8%;right:15%;transform:rotate(-12deg); animation: fadeInSticker 0.6s 0.5s backwards, float 3s ease-in-out infinite 0.5s}
-    .sticker2{background:linear-gradient(135deg,#ff6b6b,#ee5a6f);color:white;top:45%;right:5%;transform:rotate(8deg); animation: fadeInSticker 0.6s 0.6s backwards, float 3s ease-in-out infinite 0.6s}
-    .sticker3{background:linear-gradient(135deg,#4ecdc4,#44a8a0);color:white;bottom:20%;left:10%;transform:rotate(-15deg); animation: fadeInSticker 0.6s 0.7s backwards, float 3s ease-in-out infinite 0.7s}
-
-    @keyframes fadeInSticker {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes float{
-      0%,100%{transform:translateY(0)}
-      50%{transform:translateY(-8px)}
-    }
-
-    /* Articles Grid */
-    .mag-grid{
-      display:grid;
-      grid-template-columns:repeat(12,1fr);
-      gap:16px;
-      align-items:start;
-      position: relative;
-      z-index: 10;
-    }
-
-    .article{
-      background:white;
-      border-radius:16px;
-      overflow:hidden;
-      position:relative;
-      box-shadow:0 8px 24px rgba(0,0,0,0.08);
-      display:flex;
-      flex-direction:column;
-      transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      border:3px solid transparent;
-      animation:reveal 0.6s ease-out forwards;
-      opacity:0;
-      cursor: pointer;
-    }
-
-    .article:hover{
-      transform:translateY(-8px) rotate(1deg);
-      box-shadow:0 16px 40px rgba(255,107,107,0.25);
-      border-color:var(--p1);
-    }
-
-    .article a{
-      text-decoration:none;
-      color:inherit;
-      display:block;
-    }
-
-    .article .media{
-      position:relative;
-      overflow:hidden;
-    }
-
-    .article img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      transition:transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .article:hover img{
-      transform:scale(1.1) rotate(-2deg);
-    }
-
-    .article .badge{
-      position:absolute;
-      left:12px;
-      top:12px;
-      background:linear-gradient(135deg,rgba(255,255,255,0.98),rgba(255,255,255,0.9));
-      padding:8px 14px;
-      border-radius:999px;
-      font-weight:800;
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:1px;
-      box-shadow:0 4px 12px rgba(0,0,0,0.1);
-      backdrop-filter:blur(10px);
-    }
-
-    .article .overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
-      opacity: 0;
-      transition: opacity 0.3s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 40px;
-    }
-
-    .article:hover .overlay {
-      opacity: 1;
-    }
-
-    .article .content{
-      padding:16px;
-    }
-
-    .kicker{
-      font-size:11px;
-      color:var(--p1);
-      text-transform:uppercase;
-      letter-spacing:1.5px;
-      font-weight:700;
-      margin-bottom:6px;
-    }
-
-    .title{
-      font-weight:800;
-      margin-bottom:8px;
-      font-size:16px;
-      font-family:'Playfair Display',serif;
-      line-height:1.3;
-    }
-
-    .excerpt{
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.5;
-      margin-bottom:12px;
-    }
-
-    .meta{
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
-
-    .icon{
-      width:36px;
-      height:36px;
-      border-radius:10px;
-      background:linear-gradient(135deg,var(--p3),var(--p4));
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:18px;
-      box-shadow:0 4px 8px rgba(0,0,0,0.06);
-    }
-
-    .meta-text{
-      font-size:11px;
-      color:var(--muted);
-    }
-
-    /* Grid Layout */
-    .a1{grid-column:1/span 7;grid-row:1/span 2;animation-delay:0s} .a1 .media{height:320px}
-    .a2{grid-column:8/span 5;grid-row:1;animation-delay:0.08s} .a2 .media{height:180px}
-    .a3{grid-column:8/span 5;grid-row:2;animation-delay:0.16s} .a3 .media{height:140px}
-    .a4{grid-column:1/span 4;grid-row:3;animation-delay:0.24s} .a4 .media{height:200px}
-    .a5{grid-column:5/span 4;grid-row:3;animation-delay:0.32s} .a5 .media{height:200px}
-    .a6{grid-column:9/span 4;grid-row:3;animation-delay:0.4s} .a6 .media{height:200px}
-    .a7{grid-column:1/span 6;grid-row:4;animation-delay:0.48s} .a7 .media{height:180px}
-    .a8{grid-column:7/span 6;grid-row:4;animation-delay:0.56s} .a8 .media{height:180px}
-    .a9{grid-column:1/span 12;grid-row:5;animation-delay:0.64s} .a9 .media{height:200px}
-
-    @keyframes reveal{
-      from{opacity:0;transform:translateY(20px)}
-      to{opacity:1;transform:translateY(0)}
-    }
-
-    /* Floating Particles */
-    .floating-particle {
-      position: fixed;
-      pointer-events: none;
-      font-size: 32px;
-      z-index: 9998;
-      animation: floatUp 2s ease-out forwards;
-    }
-
-    @keyframes floatUp {
-      0% {
-        opacity: 0;
-        transform: scale(0);
-      }
-      10% {
-        opacity: 1;
-        transform: scale(1);
-      }
-      100% {
-        opacity: 0;
-        transform: translateY(-200px) scale(1.5);
-      }
-    }
-
-    @media (max-width:1100px){
-      .mag-grid{grid-template-columns:repeat(6,1fr)}
-      .a1,.a2,.a3,.a4,.a5,.a6,.a7,.a8,.a9{grid-column:1/span 6!important}
-      .arrow,.sticker{display:none}
-    }
-
-    @media (max-width:700px){
-      .mag-header{padding:12px 16px;flex-direction:column;gap:12px}
-      .mag-main{padding:12px}
-      .home-title{font-size:32px}
-    }
-  </style>
 </head>
 <body>
-  <!-- Loader -->
   <div class="loader">
     <div class="loader-content">
       <div class="loader-title">MiniMag</div>
@@ -488,10 +24,6 @@
     </div>
   </div>
 
-  <!-- Custom Cursor -->
-  <div class="custom-cursor">✨</div>
-
-  <!-- Header -->
   <header class="mag-header">
     <div class="mag-logo">
       <div class="mark">MM</div>
@@ -505,237 +37,877 @@
     </nav>
   </header>
 
-  <!-- Main Content -->
   <main class="mag-main">
-    <div class="home-page">
-      <h2 class="home-title">✨ Édition Printemps</h2>
-      <p class="home-subtitle">Découvrez nos articles créatifs, inspirants et colorés</p>
-      
-      <!-- Decorative Arrows -->
-      <div class="arrow arrow1">↗</div>
-      <div class="arrow arrow2">↖</div>
-      <div class="arrow arrow3">↘</div>
-      
-      <!-- Stickers -->
-      <div class="sticker sticker1">★ New!</div>
-      <div class="sticker sticker2">♡ Love it</div>
-      <div class="sticker sticker3">✨ Fresh</div>
-      
-      <!-- Articles Grid -->
-      <div class="mag-grid">
-        <article class="article a1" data-article="1">
-          <a href="article1.html">
-            <div class="media">
-              <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop" alt="Créez votre coin créatif" loading="lazy">
-              <div class="badge">Design</div>
-              <div class="overlay">📖</div>
-            </div>
-            <div class="content">
-              <div class="kicker">Design</div>
-              <div class="title">Créez votre coin créatif</div>
-              <div class="excerpt">Des astuces simples pour rendre votre bureau plus joyeux et productif.</div>
-              <div class="meta">
-                <div class="icon">💡</div>
-                <div class="meta-text">5 min • 12 Oct</div>
+    <div class="page-container">
+      <div class="home-page">
+        <div class="home-wrap">
+          <h2 class="home-title">✨ Édition Printemps</h2>
+          <p class="home-subtitle">Découvrez nos articles créatifs, inspirants et colorés</p>
+          
+          <!-- Image Carousel Section -->
+          <div class="carousel-section">
+            <div class="carousel-container">
+              <div class="carousel">
+                <div class="carousel-track">
+                  <div class="carousel-slide active">
+                    <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=400&fit=crop" alt="Design créatif">
+                    <div class="carousel-caption">Créez votre espace inspirant</div>
+                  </div>
+                  <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800&h=400&fit=crop" alt="Lifestyle">
+                    <div class="carousel-caption">Découvrez le bonheur simple</div>
+                  </div>
+                  <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=400&fit=crop" alt="Food">
+                    <div class="carousel-caption">Snacks créatifs en 10min</div>
+                  </div>
+                </div>
               </div>
+              <button class="carousel-btn prev">‹</button>
+              <button class="carousel-btn next">›</button>
+              <div class="carousel-dots"></div>
             </div>
-          </a>
-        </article>
+          </div>
 
-        <article class="article a2" data-article="2">
-          <a href="article2.html">
-            <div class="media">
-              <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800&h=600&fit=crop" alt="Les animaux qui volent votre cœur" loading="lazy">
-              <div class="badge">Lifestyle</div>
-              <div class="overlay">📖</div>
-            </div>
-            <div class="content">
-              <div class="kicker">Lifestyle</div>
-              <div class="title">Les animaux qui volent votre cœur</div>
-              <div class="excerpt">Une collection d'instantanés trop mignons pour adoucir la journée.</div>
-              <div class="meta">
-                <div class="icon">🐶</div>
-                <div class="meta-text">3 min • 01 Sep</div>
-              </div>
-            </div>
-          </a>
-        </article>
+          <div class="mag-grid">
+            <article class="article a1" data-article-id="1">
+              <a href="article1.html">
+                <div class="media">
+                  <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop" alt="Créez votre coin créatif" loading="lazy">
+                  <div class="badge">Design</div>
+                </div>
+                <div class="content">
+                  <div class="kicker">Design</div>
+                  <div class="title">Créez votre coin créatif</div>
+                  <div class="excerpt">Des astuces simples pour rendre votre bureau plus joyeux et productif.</div>
+                  <div class="meta">
+                    <div class="icon">💡</div>
+                    <div class="meta-text">5 min • 12 Oct</div>
+                  </div>
+                  <div class="article-actions">
+                    <button class="like-btn" data-article="1">❤️ <span class="like-count">0</span></button>
+                    <button class="comment-btn" data-article="1">💬 <span class="comment-count">0</span></button>
+                  </div>
+                </div>
+              </a>
+            </article>
 
-        <article class="article a3" data-article="3">
-          <a href="article3.html">
-            <div class="media">
-              <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=600&fit=crop" alt="Snacks rapides & jolis" loading="lazy">
-              <div class="badge">Food</div>
-              <div class="overlay">📖</div>
-            </div>
-            <div class="content">
-              <div class="kicker">Food</div>
-              <div class="title">Snacks rapides & jolis</div>
-              <div class="excerpt">3 recettes à faire en 10 minutes, parfaites pour les pauses créatives.</div>
-              <div class="meta">
-                <div class="icon">🍓</div>
-                <div class="meta-text">4 min • 20 Août</div>
-              </div>
-            </div>
-          </a>
-        </article>
+            <article class="article a2" data-article-id="2">
+              <a href="article2.html">
+                <div class="media">
+                  <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800&h=600&fit=crop" alt="Les animaux qui volent votre cœur" loading="lazy">
+                  <div class="badge">Lifestyle</div>
+                </div>
+                <div class="content">
+                  <div class="kicker">Lifestyle</div>
+                  <div class="title">Les animaux qui volent votre cœur</div>
+                  <div class="excerpt">Une collection d'instantanés trop mignons pour adoucir la journée.</div>
+                  <div class="meta">
+                    <div class="icon">🐶</div>
+                    <div class="meta-text">3 min • 01 Sep</div>
+                  </div>
+                  <div class="article-actions">
+                    <button class="like-btn" data-article="2">❤️ <span class="like-count">0</span></button>
+                    <button class="comment-btn" data-article="2">💬 <span class="comment-count">0</span></button>
+                  </div>
+                </div>
+              </a>
+            </article>
 
-        <article class="article a4" data-article="4">
-          <a href="article4.html">
-            <div class="media">
-              <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&h=600&fit=crop" alt="Mini guide: une journée en ville" loading="lazy">
-              <div class="badge">Travel</div>
-              <div class="overlay">📖</div>
-            </div>
-            <div class="content">
-              <div class="kicker">Travel</div>
-              <div class="title">Mini guide: une journée en ville</div>
-              <div class="excerpt">Itinéraire cosy pour découvrir une ville en une journée.</div>
-              <div class="meta">
-                <div class="icon">✈️</div>
-                <div class="meta-text">7 min • 02 Juil</div>
-              </div>
-            </div>
-          </a>
-        </article>
+            <article class="article a3" data-article-id="3">
+              <a href="article3.html">
+                <div class="media">
+                  <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=600&fit=crop" alt="Snacks rapides & jolis" loading="lazy">
+                  <div class="badge">Food</div>
+                </div>
+                <div class="content">
+                  <div class="kicker">Food</div>
+                  <div class="title">Snacks rapides & jolis</div>
+                  <div class="excerpt">3 recettes à faire en 10 minutes, parfaites pour les pauses créatives.</div>
+                  <div class="meta">
+                    <div class="icon">🍓</div>
+                    <div class="meta-text">4 min • 20 Août</div>
+                  </div>
+                  <div class="article-actions">
+                    <button class="like-btn" data-article="3">❤️ <span class="like-count">0</span></button>
+                    <button class="comment-btn" data-article="3">💬 <span class="comment-count">0</span></button>
+                  </div>
+                </div>
+              </a>
+            </article>
 
-        <article class="article a5" data-article="5">
-          <a href="article5.html">
-            <div class="media">
-              <img src="https://images.unsplash.com/photo-1452802447250-470a88ac82bc?w=800&h=600&fit=crop" alt="Papeterie mignonne DIY" loading="lazy">
-              <div class="badge">DIY</div>
-              <div class="overlay">📖</div>
-            </div>
-            <div class="content">
-              <div class="kicker">DIY</div>
-              <div class="title">Papeterie mignonne DIY</div>
-              <div class="excerpt">Personnalisez vos cahiers et cartes en quelques étapes simples.</div>
-              <div class="meta">
-                <div class="icon">✂️</div>
-                <div class="meta-text">6 min • 14 Juin</div>
-              </div>
-            </div>
-          </a>
-        </article>
+            <!-- Add remaining articles with the same structure -->
+            <article class="article a4" data-article-id="4">
+              <a href="article4.html">
+                <div class="media">
+                  <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&h=600&fit=crop" alt="Mini guide: une journée en ville" loading="lazy">
+                  <div class="badge">Travel</div>
+                </div>
+                <div class="content">
+                  <div class="kicker">Travel</div>
+                  <div class="title">Mini guide: une journée en ville</div>
+                  <div class="excerpt">Itinéraire cosy pour découvrir une ville en une journée.</div>
+                  <div class="meta">
+                    <div class="icon">✈️</div>
+                    <div class="meta-text">7 min • 02 Juil</div>
+                  </div>
+                  <div class="article-actions">
+                    <button class="like-btn" data-article="4">❤️ <span class="like-count">0</span></button>
+                    <button class="comment-btn" data-article="4">💬 <span class="comment-count">0</span></button>
+                  </div>
+                </div>
+              </a>
+            </article>
 
-        <article class="article a6" data-article="6">
-          <a href="article6.html">
-            <div class="media">
-              <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&h=600&fit=crop" alt="Hackez vos révisions" loading="lazy">
-              <div class="badge">Study</div>
-              <div class="overlay">📖</div>
-            </div>
-            <div class="content">
-              <div class="kicker">Study</div>
-              <div class="title">Hackez vos révisions</div>
-              <div class="excerpt">Techniques de mémorisation et organisation pour étudiants efficaces.</div>
-              <div class="meta">
-                <div class="icon">📚</div>
-                <div class="meta-text">8 min • 30 Mai</div>
-              </div>
-            </div>
-          </a>
-        </article>
+            <article class="article a5" data-article-id="5">
+              <a href="article5.html">
+                <div class="media">
+                  <img src="https://images.unsplash.com/photo-1452802447250-470a88ac82bc?w=800&h=600&fit=crop" alt="Papeterie mignonne DIY" loading="lazy">
+                  <div class="badge">DIY</div>
+                </div>
+                <div class="content">
+                  <div class="kicker">DIY</div>
+                  <div class="title">Papeterie mignonne DIY</div>
+                  <div class="excerpt">Personnalisez vos cahiers et cartes en quelques étapes simples.</div>
+                  <div class="meta">
+                    <div class="icon">✂️</div>
+                    <div class="meta-text">6 min • 14 Juin</div>
+                  </div>
+                  <div class="article-actions">
+                    <button class="like-btn" data-article="5">❤️ <span class="like-count">0</span></button>
+                    <button class="comment-btn" data-article="5">💬 <span class="comment-count">0</span></button>
+                  </div>
+                </div>
+              </a>
+            </article>
 
-        <article class="article a7" data-article="7">
-          <a href="article7.html">
-            <div class="media">
-              <img src="https://images.unsplash.com/photo-1466781783364-36c955e42a7f?w=800&h=600&fit=crop" alt="Plantes faciles pour débutants" loading="lazy">
-              <div class="badge">Green</div>
-              <div class="overlay">📖</div>
-            </div>
-            <div class="content">
-              <div class="kicker">Green</div>
-              <div class="title">Plantes faciles pour débutants</div>
-              <div class="excerpt">Choisissez des plantes résistantes et adorables pour débuter.</div>
-              <div class="meta">
-                <div class="icon">🌿</div>
-                <div class="meta-text">2 min • 12 Avr</div>
-              </div>
-            </div>
-          </a>
-        </article>
+            <article class="article a6" data-article-id="6">
+              <a href="article6.html">
+                <div class="media">
+                  <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&h=600&fit=crop" alt="Hackez vos révisions" loading="lazy">
+                  <div class="badge">Study</div>
+                </div>
+                <div class="content">
+                  <div class="kicker">Study</div>
+                  <div class="title">Hackez vos révisions</div>
+                  <div class="excerpt">Techniques de mémorisation et organisation pour étudiants efficaces.</div>
+                  <div class="meta">
+                    <div class="icon">📚</div>
+                    <div class="meta-text">8 min • 30 Mai</div>
+                  </div>
+                  <div class="article-actions">
+                    <button class="like-btn" data-article="6">❤️ <span class="like-count">0</span></button>
+                    <button class="comment-btn" data-article="6">💬 <span class="comment-count">0</span></button>
+                  </div>
+                </div>
+              </a>
+            </article>
 
-        <article class="article a8" data-article="8">
-          <a href="article8.html">
-            <div class="media">
-              <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=600&fit=crop" alt="Routines du matin pour rester zen" loading="lazy">
-              <div class="badge">Culture</div>
-              <div class="overlay">📖</div>
-            </div>
-            <div class="content">
-              <div class="kicker">Culture</div>
-              <div class="title">Routines du matin pour rester zen</div>
-              <div class="excerpt">Rituels simples pour un réveil doux et une journée productive.</div>
-              <div class="meta">
-                <div class="icon">☕</div>
-                <div class="meta-text">10 min • 01 Mar</div>
-              </div>
-            </div>
-          </a>
-        </article>
+            <article class="article a7" data-article-id="7">
+              <a href="article7.html">
+                <div class="media">
+                  <img src="https://images.unsplash.com/photo-1466781783364-36c955e42a7f?w=800&h=600&fit=crop" alt="Plantes faciles pour débutants" loading="lazy">
+                  <div class="badge">Green</div>
+                </div>
+                <div class="content">
+                  <div class="kicker">Green</div>
+                  <div class="title">Plantes faciles pour débutants</div>
+                  <div class="excerpt">Choisissez des plantes résistantes et adorables pour débuter.</div>
+                  <div class="meta">
+                    <div class="icon">🌿</div>
+                    <div class="meta-text">2 min • 12 Avr</div>
+                  </div>
+                  <div class="article-actions">
+                    <button class="like-btn" data-article="7">❤️ <span class="like-count">0</span></button>
+                    <button class="comment-btn" data-article="7">💬 <span class="comment-count">0</span></button>
+                  </div>
+                </div>
+              </a>
+            </article>
 
-        <article class="article a9" data-article="9">
-          <a href="article9.html">
-            <div class="media">
-              <img src="https://images.unsplash.com/photo-1452457807411-4979b707c5be?w=800&h=600&fit=crop" alt="Édition spéciale: couleurs & motifs" loading="lazy">
-              <div class="badge">Special</div>
-              <div class="overlay">📖</div>
-            </div>
-            <div class="content">
-              <div class="kicker">Special</div>
-              <div class="title">Édition spéciale: couleurs & motifs</div>
-              <div class="excerpt">Un grand dossier illustré sur les tendances joyeuses du moment.</div>
-              <div class="meta">
-                <div class="icon">✨</div>
-                <div class="meta-text">15 min • 20 Fév</div>
+            <article class="article a8" data-article-id="8">
+              <a href="article8.html">
+                <div class="media">
+                  <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=600&fit=crop" alt="Routines du matin pour rester zen" loading="lazy">
+                  <div class="badge">Culture</div>
+                </div>
+                <div class="content">
+                  <div class="kicker">Culture</div>
+                  <div class="title">Routines du matin pour rester zen</div>
+                  <div class="excerpt">Rituels simples pour un réveil doux et une journée productive.</div>
+                  <div class="meta">
+                    <div class="icon">☕</div>
+                    <div class="meta-text">10 min • 01 Mar</div>
+                  </div>
+                  <div class="article-actions">
+                    <button class="like-btn" data-article="8">❤️ <span class="like-count">0</span></button>
+                    <button class="comment-btn" data-article="8">💬 <span class="comment-count">0</span></button>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <article class="article a9" data-article-id="9">
+              <a href="article9.html">
+                <div class="media">
+                  <img src="https://images.unsplash.com/photo-1452457807411-4979b707c5be?w=800&h=600&fit=crop" alt="Édition spéciale: couleurs & motifs" loading="lazy">
+                  <div class="badge">Special</div>
+                </div>
+                <div class="content">
+                  <div class="kicker">Special</div>
+                  <div class="title">Édition spéciale: couleurs & motifs</div>
+                  <div class="excerpt">Un grand dossier illustré sur les tendances joyeuses du moment.</div>
+                  <div class="meta">
+                    <div class="icon">✨</div>
+                    <div class="meta-text">15 min • 20 Fév</div>
+                  </div>
+                  <div class="article-actions">
+                    <button class="like-btn" data-article="9">❤️ <span class="like-count">0</span></button>
+                    <button class="comment-btn" data-article="9">💬 <span class="comment-count">0</span></button>
+                  </div>
+                </div>
+              </a>
+            </article>
+          </div>
+
+          <!-- Testimonials Section -->
+          <section class="testimonials-section">
+            <h3 class="section-title">💬 Ce que disent nos lecteurs</h3>
+            <div class="testimonials-container">
+              <div class="testimonials-slider">
+                <div class="testimonial active">
+                  <p>"Ce magazine m'inspire chaque jour ! Les articles sont tellement créatifs."</p>
+                  <span>- Marie L.</span>
+                </div>
+                <div class="testimonial">
+                  <p>"J'adore le design et la qualité du contenu. Je recommande à tous !"</p>
+                  <span>- Pierre D.</span>
+                </div>
+                <div class="testimonial">
+                  <p>"Une vraie bouffée d'air frais dans ma routine. Merci MiniMag !"</p>
+                  <span>- Sophie M.</span>
+                </div>
               </div>
             </div>
-          </a>
-        </article>
+          </section>
+
+          <!-- Contact Form Section -->
+          <section class="contact-section">
+            <h3 class="section-title">📧 Restons en contact</h3>
+            <form class="contact-form" id="contactForm">
+              <div class="form-group">
+                <label for="name">Nom</label>
+                <input type="text" id="name" name="name" required>
+                <span class="error-message"></span>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <span class="error-message"></span>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                <span class="error-message"></span>
+              </div>
+              <button type="submit" class="submit-btn">Envoyer le message</button>
+            </form>
+          </section>
+        </div>
+
+        <div class="arrow arrow1">↗</div>
+        <div class="arrow arrow2">↖</div>
+        <div class="arrow arrow3">↘</div>
+        <div class="sticker sticker1">★ New!</div>
+        <div class="sticker sticker2">♡ Love it</div>
+        <div class="sticker sticker3">✨ Fresh</div>
       </div>
     </div>
   </main>
 
   <script>
+    // Enhanced loader
+    document.addEventListener('DOMContentLoaded', function() {
+      const loader = document.querySelector('.loader');
+      window.addEventListener('load', function() {
+        setTimeout(() => {
+          loader.style.opacity = '0';
+          setTimeout(() => loader.style.display = 'none', 500);
+        }, 1000);
+      });
+    });
 
-    const articles = document.querySelectorAll('.article');
-    const particleEmojis = ['✨', '💫', '⭐', '🌟', '💖'];
+    // 1. SIMPLE Dynamic Navigation - Just for demonstration
+    class NavigationManager {
+      constructor() {
+        this.init();
+      }
 
-    articles.forEach(article => {
-      article.addEventListener('click', (e) => {
-        for (let i = 0; i < 5; i++) {
-          const particle = document.createElement('div');
-          particle.className = 'floating-particle';
-          particle.textContent = particleEmojis[Math.floor(Math.random() * particleEmojis.length)];
-          particle.style.left = (Math.random() * window.innerWidth) + 'px';
-          particle.style.top = (Math.random() * window.innerHeight) + 'px';
-          document.body.appendChild(particle);
-          
-          setTimeout(() => particle.remove(), 2000);
+      init() {
+        // Add loading animation to article links
+        document.addEventListener('click', (e) => {
+          const link = e.target.closest('a[href$=".html"]');
+          if (link && link.getAttribute('href') !== 'index.html') {
+            // Just add a simple loading effect
+            this.showLoadingEffect(link);
+          }
+        });
+      }
+
+      showLoadingEffect(link) {
+        // Add a quick pulse animation to show navigation is happening
+        link.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          link.style.transform = 'scale(1)';
+        }, 200);
+      }
+    }
+
+    // 2. Image Carousel - FIXED
+    class ImageCarousel {
+      constructor() {
+        this.currentSlide = 0;
+        this.slides = document.querySelectorAll('.carousel-slide');
+        this.init();
+      }
+
+      init() {
+        if (this.slides.length === 0) return;
+        
+        this.createDots();
+        this.setupEventListeners();
+        this.startAutoPlay();
+        this.showSlide(0); // Show first slide initially
+      }
+
+      createDots() {
+        const dotsContainer = document.querySelector('.carousel-dots');
+        dotsContainer.innerHTML = ''; // Clear existing dots
+        
+        this.slides.forEach((_, index) => {
+          const dot = document.createElement('div');
+          dot.classList.add('carousel-dot');
+          if (index === 0) dot.classList.add('active');
+          dot.addEventListener('click', () => this.goToSlide(index));
+          dotsContainer.appendChild(dot);
+        });
+      }
+
+      setupEventListeners() {
+        document.querySelector('.carousel-btn.prev').addEventListener('click', () => this.prevSlide());
+        document.querySelector('.carousel-btn.next').addEventListener('click', () => this.nextSlide());
+      }
+
+      nextSlide() {
+        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+        this.showSlide(this.currentSlide);
+      }
+
+      prevSlide() {
+        this.currentSlide = (this.currentSlide - 1 + this.slides.length) % this.slides.length;
+        this.showSlide(this.currentSlide);
+      }
+
+      goToSlide(index) {
+        this.currentSlide = index;
+        this.showSlide(this.currentSlide);
+      }
+
+      showSlide(index) {
+        // Hide all slides
+        this.slides.forEach(slide => {
+          slide.classList.remove('active');
+        });
+        
+        // Show current slide
+        this.slides[index].classList.add('active');
+        
+        // Update dots
+        document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
+        
+        // Update track position
+        document.querySelector('.carousel-track').style.transform = 
+          `translateX(-${index * 100}%)`;
+      }
+
+      startAutoPlay() {
+        setInterval(() => this.nextSlide(), 5000);
+      }
+    }
+
+    // 3. Like and Comment System
+    class InteractionSystem {
+      constructor() {
+        this.likes = JSON.parse(localStorage.getItem('magazineLikes')) || {};
+        this.comments = JSON.parse(localStorage.getItem('magazineComments')) || {};
+        this.init();
+      }
+
+      init() {
+        document.addEventListener('click', (e) => {
+          if (e.target.closest('.like-btn')) {
+            e.preventDefault(); // Prevent navigation
+            this.handleLike(e.target.closest('.like-btn'));
+          }
+          if (e.target.closest('.comment-btn')) {
+            e.preventDefault(); // Prevent navigation
+            this.handleComment(e.target.closest('.comment-btn'));
+          }
+        });
+        this.updateCounts();
+      }
+
+      handleLike(button) {
+        const articleId = button.dataset.article;
+        this.likes[articleId] = (this.likes[articleId] || 0) + 1;
+        localStorage.setItem('magazineLikes', JSON.stringify(this.likes));
+        
+        button.classList.add('liked');
+        setTimeout(() => button.classList.remove('liked'), 600);
+        this.updateCounts();
+      }
+
+      handleComment(button) {
+        const articleId = button.dataset.article;
+        const comment = prompt('Laissez un commentaire:');
+        if (comment) {
+          this.comments[articleId] = (this.comments[articleId] || 0) + 1;
+          localStorage.setItem('magazineComments', JSON.stringify(this.comments));
+          this.updateCounts();
+          alert('Merci pour votre commentaire!');
         }
-      });
+      }
+
+      updateCounts() {
+        document.querySelectorAll('.like-btn').forEach(btn => {
+          const articleId = btn.dataset.article;
+          const count = this.likes[articleId] || 0;
+          btn.querySelector('.like-count').textContent = count;
+        });
+
+        document.querySelectorAll('.comment-btn').forEach(btn => {
+          const articleId = btn.dataset.article;
+          const count = this.comments[articleId] || 0;
+          btn.querySelector('.comment-count').textContent = count;
+        });
+      }
+    }
+
+    // 4. Dynamic Menu (Hide/Show on scroll)
+    class DynamicMenu {
+      constructor() {
+        this.header = document.querySelector('.mag-header');
+        this.lastScrollY = window.scrollY;
+        this.init();
+      }
+
+      init() {
+        window.addEventListener('scroll', () => this.handleScroll());
+      }
+
+      handleScroll() {
+        const currentScrollY = window.scrollY;
+        
+        if (currentScrollY > this.lastScrollY && currentScrollY > 100) {
+          this.header.style.transform = 'translateY(-100%)';
+        } else {
+          this.header.style.transform = 'translateY(0)';
+        }
+        
+        this.lastScrollY = currentScrollY;
+      }
+    }
+
+    // 5. Testimonials Slider
+    class TestimonialsSlider {
+      constructor() {
+        this.currentTestimonial = 0;
+        this.testimonials = document.querySelectorAll('.testimonial');
+        this.init();
+      }
+
+      init() {
+        if (this.testimonials.length === 0) return;
+        setInterval(() => this.nextTestimonial(), 4000);
+      }
+
+      nextTestimonial() {
+        this.testimonials[this.currentTestimonial].classList.remove('active');
+        this.currentTestimonial = (this.currentTestimonial + 1) % this.testimonials.length;
+        this.testimonials[this.currentTestimonial].classList.add('active');
+      }
+    }
+
+    class FormValidator {
+      constructor() {
+        this.form = document.getElementById('contactForm');
+        this.init();
+      }
+
+      init() {
+        if (!this.form) return;
+        
+        this.form.addEventListener('submit', (e) => this.validateForm(e));
+        this.setupRealTimeValidation();
+      }
+
+      setupRealTimeValidation() {
+        const inputs = this.form.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+          input.addEventListener('blur', () => this.validateField(input));
+          input.addEventListener('input', () => this.clearError(input));
+        });
+      }
+
+      validateField(field) {
+        const errorElement = field.parentElement.querySelector('.error-message');
+        
+        if (field.type === 'email' && field.value && !this.isValidEmail(field.value)) {
+          this.showError(field, 'Veuillez entrer un email valide');
+          return false;
+        }
+        
+        if (field.required && !field.value.trim()) {
+          this.showError(field, 'Ce champ est requis');
+          return false;
+        }
+        
+        this.clearError(field);
+        return true;
+      }
+
+      validateForm(e) {
+        e.preventDefault();
+        let isValid = true;
+        const fields = this.form.querySelectorAll('input[required], textarea[required]');
+        
+        fields.forEach(field => {
+          if (!this.validateField(field)) {
+            isValid = false;
+          }
+        });
+
+        if (isValid) {
+          this.showSuccess();
+          this.form.reset();
+        }
+      }
+
+      isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      showError(field, message) {
+        const errorElement = field.parentElement.querySelector('.error-message');
+        errorElement.textContent = message;
+        field.style.borderColor = '#ff6b6b';
+      }
+
+      clearError(field) {
+        const errorElement = field.parentElement.querySelector('.error-message');
+        errorElement.textContent = '';
+        field.style.borderColor = '';
+      }
+
+      showSuccess() {
+        alert('Merci ! Votre message a été envoyé avec succès.');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      new NavigationManager();
+      new ImageCarousel();
+      new InteractionSystem();
+      new DynamicMenu();
+      new TestimonialsSlider();
+      new FormValidator();
     });
 
-    articles.forEach(article => {
-      article.addEventListener('mouseenter', () => {
-        article.style.transform = 'translateY(-8px) rotate(1deg)';
-      });
-      
-      article.addEventListener('mouseleave', () => {
-        article.style.transform = 'translateY(0) rotate(0deg)';
-      });
-    });
+    const additionalStyles = `
+      /* Carousel Styles - FIXED */
+      .carousel-section {
+        margin: 2rem 0;
+      }
 
-    document.addEventListener('mousemove', (e) => {
-      const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-      const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-      
-      document.querySelectorAll('.arrow, .sticker').forEach((el, index) => {
-        const speed = (index + 1) * 0.5;
-        el.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
-      });
-    });
+      .carousel-container {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        background: #f8f9fa;
+      }
+
+      .carousel {
+        position: relative;
+        overflow: hidden;
+        border-radius: 16px;
+        height: 400px;
+      }
+
+      .carousel-track {
+        display: flex;
+        transition: transform 0.5s ease;
+        height: 100%;
+      }
+
+      .carousel-slide {
+        min-width: 100%;
+        position: relative;
+        height: 100%;
+        flex-shrink: 0;
+      }
+
+      .carousel-slide.active {
+        display: block;
+      }
+
+      .carousel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .carousel-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0,0,0,0.7));
+        color: white;
+        padding: 2rem;
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+      }
+
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255,255,255,0.9);
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 10;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .carousel-btn:hover {
+        background: white;
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      .carousel-btn.prev { left: 20px; }
+      .carousel-btn.next { right: 20px; }
+
+      .carousel-dots {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 10;
+      }
+
+      .carousel-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.5);
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .carousel-dot.active {
+        background: white;
+        transform: scale(1.2);
+      }
+
+      /* Article Actions */
+      .article-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .like-btn, .comment-btn {
+        background: rgba(255,255,255,0.9);
+        border: 2px solid #f0f0f0;
+        padding: 6px 12px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 12px;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .like-btn:hover, .comment-btn:hover {
+        background: white;
+        transform: scale(1.05);
+      }
+
+      .like-btn.liked {
+        animation: heartBeat 0.6s;
+        background: #ff6b6b;
+        color: white;
+      }
+
+      @keyframes heartBeat {
+        0% { transform: scale(1); }
+        25% { transform: scale(1.3); }
+        50% { transform: scale(1); }
+        75% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+      }
+
+      /* Testimonials Styles */
+      .testimonials-section {
+        margin: 4rem 0;
+        padding: 2rem;
+        background: linear-gradient(135deg, var(--bg1), var(--bg2));
+        border-radius: 16px;
+      }
+
+      .section-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        text-align: center;
+      }
+
+      .testimonials-container {
+        position: relative;
+        height: 120px;
+        overflow: hidden;
+      }
+
+      .testimonial {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.5s ease;
+        text-align: center;
+      }
+
+      .testimonial.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .testimonial p {
+        font-size: 1.1rem;
+        font-style: italic;
+        margin-bottom: 1rem;
+      }
+
+      .testimonial span {
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      /* Contact Form Styles */
+      .contact-section {
+        margin: 4rem 0;
+      }
+
+      .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: var(--muted);
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-family: inherit;
+        transition: border-color 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--p1);
+      }
+
+      .error-message {
+        color: #ff6b6b;
+        font-size: 0.8rem;
+        margin-top: 0.25rem;
+        display: block;
+      }
+
+      .submit-btn {
+        background: linear-gradient(135deg, var(--p1), var(--p2));
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s;
+        width: 100%;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255,107,107,0.3);
+      }
+
+      /* Dynamic Menu */
+      .mag-header {
+        transition: transform 0.3s ease;
+      }
+
+      @media (max-width: 700px) {
+        .carousel {
+          height: 250px;
+        }
+        
+        .carousel-caption {
+          font-size: 1.2rem;
+          padding: 1rem;
+        }
+        
+        .testimonials-section {
+          padding: 1rem;
+        }
+        
+        .section-title {
+          font-size: 1.5rem;
+        }
+      }
+    `;
+
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = additionalStyles;
+    document.head.appendChild(styleSheet);
   </script>
 </body>
 </html>
